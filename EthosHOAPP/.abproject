@@ -1,0 +1,44 @@
+{
+  "ProjectName": "EthosHOAPP",
+  "ProjectGuid": "c4ae3078-73ac-4b47-9d75-669effceacb8",
+  "projectVersion": 1,
+  "AppIdentifier": "com.telerik.EthosHO",
+  "DisplayName": "EthosHO",
+  "Author": "Radhakrishnan",
+  "Description": "EthosHO",
+  "BundleVersion": "1.0",
+  "AndroidVersionCode": "1",
+  "iOSDeviceFamily": [
+    "1",
+    "2"
+  ],
+  "iOSBackgroundMode": [],
+  "ProjectTypeGuids": "{070BCB52-5A75-4F8C-A973-144AF0EAFCC9}",
+  "FrameworkVersion": "4.0.0",
+  "AndroidPermissions": [
+    "android.permission.INTERNET"
+  ],
+  "DeviceOrientations": [
+    "Portrait"
+  ],
+  "AndroidHardwareAcceleration": "true",
+  "iOSStatusBarStyle": "Default",
+  "Framework": "Cordova",
+  "WP8TileTitle": "",
+  "WP8Publisher": "",
+  "WP8Capabilities": [
+    "ID_CAP_NETWORKING",
+    "ID_CAP_WEBBROWSERCOMPONENT"
+  ],
+  "WP8Requirements": [],
+  "WP8PublisherID": "{d1410b83-f14c-4a4f-8462-9cc487af55be}",
+  "WP8ProductID": "{b197f5db-a6ef-4e6e-9494-987df8eee213}",
+  "WPSdk": "8.0",
+  "WP8PackageIdentityName": "1234Telerik.EthosHO",
+  "WP8WindowsPublisherName": "CN=Telerik",
+  "WP8SupportedResolutions": [
+    "ID_RESOLUTION_WVGA",
+    "ID_RESOLUTION_WXGA",
+    "ID_RESOLUTION_HD720P"
+  ]
+}

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, width=device-width">
+    <link href="kendo/styles/kendo.mobile.all.min.css" rel="stylesheet">
+
+    <link href="styles/overrides.css" rel="stylesheet">
+    <link href="styles/main.css" rel="stylesheet">
+
+    <script src="cordova.js"></script>
+    <script src="kendo/js/jquery.min.js"></script>
+    <script src="kendo/js/kendo.mobile.min.js"></script>
+    <script src="app.js"></script>
+</head>
+
+<body id="kendoUiMobileApp">
+    <script src="components/holidaysView/index.js"></script>
+    <script src="components/updateprofileView/index.js"></script>
+    <script src="components/changepasswordView/index.js"></script>
+    <script src="components/dashboardView/index.js"></script>
+    <script src="components/authenticateView/index.js"></script>
+    <script src="components/home/index.js"></script>
+    <div data-role="layout" data-id="main">
+        <header data-role="header">
+            <div data-role="navbar">
+                <span data-role="view-title"></span>
+            </div>
+        </header>
+        <footer data-role="footer">
+            <div data-role="tabstrip" id="navigation-container">
+                <a href="components/home/view.html" data-icon="home">Home View</a>
+                <a href="components/authenticateView/view.html" data-icon="home">Authenticate</a>
+                <a href="components/dashboardView/view.html" data-icon="home">Dashboard View</a>
+                <a href="components/changepasswordView/view.html" data-icon="home">changepassword View</a>
+
+
+                <a href="#navigation-show-more-view" data-more="true" data-icon="more">More</a></div>
+            <div id="navigation-container-more" style="display: none">
+                <a href="components/updateprofileView/view.html" data-icon="home">updateprofileView</a><a href="components/holidaysView/view.html" data-icon="home">holidaysView</a></div>
+        </footer>
+    </div>
+
+
+    <div id="navigation-show-more-view" data-role="view" data-title="Show More" data-layout="main">
+        <ul data-role="listview" data-style="inset" data-click="app.listViewClick">
+        </ul>
+    </div>
+
+    <div data-role="layout" data-id="main-nonav">
+        <header data-role="header">
+            <div data-role="navbar">
+                <span data-role="view-title"></span>
+            </div>
+        </header>
+        <footer data-role="footer">
+        </footer>
+    </div>
+    <!--  start index html save -->
+    <!--  end index html save -->
+
+    <!-- START_CUSTOM_CODE_kendoUiMobileApp -->
+    <!-- Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes -->
+
+    <!-- END_CUSTOM_CODE_kendoUiMobileApp -->
+</body>
+
+</html>
