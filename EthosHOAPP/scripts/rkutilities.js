@@ -1,4 +1,4 @@
-// user not allowing to exceeding chars
+ // user not allowing to exceeding chars
 function textinputlength(val, max, id) {
     // alert(val);
     if (val.length > max) {
@@ -24,3 +24,4 @@ function todateddmmyyy(dateObject) {
 
     return date;
 };
+ 

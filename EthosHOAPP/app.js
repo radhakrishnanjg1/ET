@@ -10,7 +10,7 @@
             app.mobileApp = new kendo.mobile.Application(document.body, {
                 //transition: 'slide',
                 skin: 'flat', 
-                initial: 'components/changepasswordView/view.html',//holidaysView authenticationView
+                initial: 'components/authenticationView/view.html',//holidaysView authenticationView
                // useNativeScrolling: true
             });
         });
