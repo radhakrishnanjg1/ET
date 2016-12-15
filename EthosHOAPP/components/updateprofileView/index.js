@@ -1,11 +1,107 @@
 'use strict';
 
-app.updateprofileView = kendo.observable({
-    onShow: function() {},
-    afterShow: function() {}
-});
+(function () {
+    var provider = app.data.defaultProvider;
 
-// START_CUSTOM_CODE_updateprofileView
-// Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes
+    var view = app.profileView = kendo.observable();
 
-// END_CUSTOM_CODE_updateprofileView
+    var validator;
+    var profileViewModel = kendo.observable({
+        profile: null,
+        uploader: null,
+        photoChanged: false,
+        onShow: function (e) { 
+            if (!app.utils.checkinternetconnection()) {
+                app.navigation.navigateoffline("updateprofileView");
+            }
+            app.navigation.logincheck(); 
+                var user = app.user;
+                var textarea = $('#about');
+                var profile = kendo.observable({
+                    Email: user.Email,
+                    Mobile: user.Mobile,
+                    Username: user.Username,
+                    Birthday: user.Birthday,
+                    Designation: user.Designation,
+
+                    //DisplayName: "Ram", 
+                    //Birthday: "1965-12-12",
+                    ////Gender: "1", 
+                });
+                this.set('profile', profile);
+                validator = app.validate.getValidator('#edit-profile-form'); 
+        },
+        onHide: function () {
+
+        },
+        updateProfile: function () {
+            if (!validator.validate()) {
+                return;
+            }
+
+            var profile = this.profile;
+            var user = app.user;
+            var model = {
+                Login_ID: user.Login_ID,
+                Employee_ID: user.Employee_ID,
+                Email: user.Email,
+                Mobile: user.Mobile,
+            };
+
+            if (profile.Email !== user.Email) {
+                model.Email = profile.Email;
+            }
+
+            if (profile.Mobile !== user.Mobile) {
+                model.Mobile = profile.Mobile;
+            }
+            // update profile in db
+            fun_dbupdateprofiledetail(user.Login_ID, user.Employee_ID, profile.Email, profile.Mobile);
+            app.user.Email = profile.Email;
+            app.user.Mobile = profile.Mobile;
+            var profile = kendo.observable({
+                Email: "",
+                Mobile: "",
+            });
+            this.set('profile', profile);
+        }
+    });
+
+    view.set('profileViewModel', profileViewModel);
+}());
+
+
+function fun_dbupdateprofiledetail(Login_ID, Employee_ID, Email, Mobile) {
+    var datacheck = new kendo.data.DataSource({
+        transport: {
+            read: {
+                url: "https://api.everlive.com/v1/wl2tdph1kbl8l9w8/Invoke/SqlProcedures/APP_Change_Profile_Details",
+                type: "POST",
+                dataType: "json",
+                data: {
+                    "Login_ID": Login_ID, "Employee_ID": Employee_ID,
+                    "Email": Email, "Mobile": Mobile
+                }
+            }
+        },
+        schema: {
+            parse: function (response) {
+                var data = response.Result.Data[0];
+                return data;
+            }
+        }
+    });
+    app.utils.loading(true);
+    datacheck.fetch(function () {
+        var data = this.data();
+        if (data[0].Output_ID == 1) {
+            app.notify.success(data[0].Output_Message);
+        }
+        else {
+            app.notify.error(data[0].Output_Message);
+        }
+        app.utils.loading(false);
+    });
+
+}
+

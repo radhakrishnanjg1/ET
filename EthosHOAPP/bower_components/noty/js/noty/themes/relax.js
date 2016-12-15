@@ -80,7 +80,7 @@ $.noty.themes.relax = {
             case 'inline':
                 this.$bar.css({
                     border   : '1px solid #eee',
-                    boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)"
+                   // boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)"
                 });
                 this.$message.css({fontSize: '13px', textAlign: 'center'});
                 break;
@@ -92,7 +92,7 @@ $.noty.themes.relax = {
             case 'centerRight':
                 this.$bar.css({
                     border   : '1px solid #eee',
-                    boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)"
+                   // boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)"
                 });
                 this.$message.css({fontSize: '13px', textAlign: 'left'});
                 break;
@@ -102,13 +102,13 @@ $.noty.themes.relax = {
                     borderLeft  : '2px solid #eee',
                     borderRight : '2px solid #eee',
                     borderBottom: '2px solid #eee',
-                    boxShadow   : "0 -2px 4px rgba(0, 0, 0, 0.1)"
+                   // boxShadow   : "0 -2px 4px rgba(0, 0, 0, 0.1)"
                 });
                 break;
             default:
                 this.$bar.css({
                     border   : '2px solid #eee',
-                    boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)"
+                    //boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)"
                 });
                 break;
         }
@@ -132,11 +132,11 @@ $.noty.themes.relax = {
                 this.$buttons.css({borderTop: '1px solid #0B90C4'});
                 break;
             case 'success':
-                this.$bar.css({backgroundColor: '#BCF5BC', borderColor: '#7cdd77', color: 'darkgreen'});
+                this.$bar.css({ backgroundColor: '#006666', borderColor: '#7cdd77', color: '#FFF' });
                 this.$buttons.css({borderTop: '1px solid #50C24E'});
                 break;
             default:
-                this.$bar.css({backgroundColor: '#FFF', borderColor: '#CCC', color: '#444'});
+                this.$bar.css({backgroundColor: '#000', borderColor: '#CCC', color: '#FFF'});
                 break;
         }
     },

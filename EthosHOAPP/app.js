@@ -2,15 +2,16 @@
 
 (function() {
     var app = {
-        data: {}
+        data: {},   
     };
 
     var bootstrap = function() {
         $(function() {
             app.mobileApp = new kendo.mobile.Application(document.body, {
-                transition: 'slide',
-                skin: 'nova',
-                initial: 'components/home/view.html'
+                //transition: 'slide',
+                skin: 'flat', 
+                initial: 'components/changepasswordView/view.html',//holidaysView authenticationView
+               // useNativeScrolling: true
             });
         });
     };
@@ -38,7 +39,7 @@
                 navigator.splashscreen.hide();
             }
             bootstrap();
-        }, false);
+        });
     } else {
         bootstrap();
     }
@@ -100,9 +101,11 @@
         });
     };
 
+
 }());
 
 // START_CUSTOM_CODE_kendoUiMobileApp
 // Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes
+
 
 // END_CUSTOM_CODE_kendoUiMobileApp

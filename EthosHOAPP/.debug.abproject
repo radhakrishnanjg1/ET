@@ -19,6 +19,7 @@
     "cordova-plugin-splashscreen",
     "cordova-plugin-statusbar",
     "cordova-plugin-vibration",
-    "cordova-plugin-whitelist"
+    "cordova-plugin-whitelist",
+    "uk.co.whiteoctober.cordova.appversion@0.1.7"
   ]
 }

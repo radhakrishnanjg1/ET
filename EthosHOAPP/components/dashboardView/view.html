@@ -1,7 +1,60 @@
-<div data-role="view" data-title="Dashboard View" data-layout="main" data-model="app.dashboardView" data-show="app.dashboardView.onShow" data-after-show="app.dashboardView.afterShow" id="dashboardViewScreen" class="screen">
-
-    <!-- START_CUSTOM_CODE_dashboardView -->
-    <!-- Add custom code here. For more information about custom code, see http://docs.telerik.com/platform/screenbuilder/troubleshooting/how-to-keep-custom-code-changes -->
-
-    <!-- END_CUSTOM_CODE_dashboardView -->
+<div id="dashboard-view" data-role="view" data-title="Activity Details"
+     data-after-show="disableBackButton" data-before-hide="enableBackButton"
+     data-layout="afterlogin"
+     data-model="app.dashboardView.dashboardViewModel"
+     data-bind="events: { show: onShow }"  >
+    <footer data-role="footer">
+        <div class="text-center ">
+            <div class="row">
+                <div class="col-xs-12">
+                    <!--<a data-role="button" data-rel="drawer"
+                       href="#left-drawer" class="faicon">
+                        <i class="fa fa-1-5x fa-list"></i>
+                    </a>-->
+                    <a class="faicon"
+                       data-bind="events: {click: onShow }">
+                        <i class="fa fa-2x fa-refresh"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div id="dvvisionsummary" style="display:none;"
+         data-role="touch"
+         data-enable-swipe="1"
+         data-swipe="gotoswipedirection">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-1 text-center drawertopicon" data-role="button" data-click="gotonextrecord" data-direction="right">
+                        <i class="fa fa-chevron-left"> </i>
+                    </div>
+                    <div class="col-xs-10 text-center text-uppercase ">
+                        <b>  <span id="spanDivision_Name"></span></b>
+                        <input type="hidden" id="hdnSLNO">
+                    </div>
+                    <div class="col-xs-1 text-center drawertopicon" data-role="button" data-click="gotonextrecord" data-direction="left">
+                        <i class="fa fa-chevron-right"> </i>
+                    </div> 
+                </div>
+            </div> 
+            <div class="panel-body" style="padding-top:0"> 
+                <div id="divisionlist-listview"></div>  
+                <div id="chartpieemployeeheadcountdetails" style="height:340px;width:100% "></div>
+            </div>
+            <div class="panel-footer text-center">
+                <b>All data is for present month</b>
+            </div>
+        </div>
+    </div>
+    <script type="text/x-kendo-tmpl" id="template-divisionlist">
+        <div class="text-center param">
+            <div class="paramvalue ">
+                #=ParameterValue #
+            </div>
+            <div class="paramname">
+                #=Parameter #
+            </div>
+        </div>
+    </script> 
 </div>
