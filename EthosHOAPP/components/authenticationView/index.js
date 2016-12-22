@@ -17,10 +17,13 @@
                + "serial:" + device.serial;
                 app.utils.loading(true);
                 fun_db_APP_User_Logout(app.user.Login_ID, app.user.Employee_ID, deviceinformation);
-                view.set('authenticationViewModel', vm);
+                view.set('authenticationViewModel', vm); 
+                app.user = null;
+                localStorage.clear();
             }
-            app.user = null;
-            localStorage.clear();
+            if (app.user != null) {
+                app.navigation.navigatedashboard();
+            } 
             if (!app.utils.checkinternetconnection()) {
                 app.navigation.navigateoffline("authenticationView");
             } 

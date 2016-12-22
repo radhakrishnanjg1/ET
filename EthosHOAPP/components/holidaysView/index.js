@@ -6,8 +6,10 @@ app.holidaysView = kendo.observable({
             app.navigation.navigateoffline("holidaysView");
         }
         app.navigation.logincheck();
-        app.utils.loading(true);
-        fun_db_APP_Get_Permited_Holiday_Master(app.user.Login_ID); 
+        if (localStorage.getItem("holidaydetails_live") == null || localStorage.getItem("holidaydetails_live") != 1) {
+            app.utils.loading(true);
+            fun_db_APP_Get_Permited_Holiday_Master(app.user.Login_ID);
+        }
     },
     afterShow: function () { },
 
@@ -37,6 +39,7 @@ function fun_db_APP_Get_Permited_Holiday_Master(LoginID) {
         var data = this.data();
         if (data[0].SNO > 0) {
             localStorage.setItem("holidaydetails", JSON.stringify(data)); // holiday  details 
+            localStorage.setItem("holidaydetails_live", 1);  
             loaddropdownlist();
             loadcontrols();
             $('#dvholidaysummary').show(); 

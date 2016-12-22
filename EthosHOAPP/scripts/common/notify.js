@@ -22,11 +22,11 @@
         warning: function (text) {
             noty({ text: text, type: 'warning', layout: 'bottom' })
         },
-        confirmation: function (text, title, callback) {
+        confirmation: function (text,callback) {
             text = text || 'Are you sure?';
 
             noty({
-                text,
+                text: text,
                 buttons: [
                   {
                       addClass: 'btn btn-success', text: 'Confirm', onClick: function ($noty) {

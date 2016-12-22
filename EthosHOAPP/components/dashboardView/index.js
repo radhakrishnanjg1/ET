@@ -8,10 +8,16 @@
             if (!app.utils.checkinternetconnection()) {
                 app.navigation.navigateoffline("dashboardView");
             }
-            app.navigation.logincheck();
-            app.utils.loading(true); 
-            fun_db_APP_Get_Permited_Divisions(app.user.Login_ID);
-           
+            app.navigation.logincheck(); 
+            if (localStorage.getItem("divisiondetails_live") == null || localStorage.getItem("divisiondetails_live") != 1) {
+                app.utils.loading(true);
+                fun_db_APP_Get_Activity_Details(app.user.Login_ID);
+            }
+        },
+
+        onRefresh: function () { 
+            app.utils.loading(true);
+            fun_db_APP_Get_Activity_Details(app.user.Login_ID);
         },
 
     });
@@ -19,11 +25,11 @@
     view.set('dashboardViewModel', dashboardViewModel);
 }());
 
-function fun_db_APP_Get_Permited_Divisions(LoginID) {
+function fun_db_APP_Get_Activity_Details(LoginID) {
     var datasource = new kendo.data.DataSource({
         transport: {
             read: {
-                url: "https://api.everlive.com/v1/wl2tdph1kbl8l9w8/Invoke/SqlProcedures/APP_Get_Permited_Divisions",
+                url: "https://api.everlive.com/v1/wl2tdph1kbl8l9w8/Invoke/SqlProcedures/APP_Get_Activity_Details",
                 type: "POST",
                 dataType: "json",
                 data: {
@@ -46,6 +52,7 @@ function fun_db_APP_Get_Permited_Divisions(LoginID) {
             $('#dvvisionsummary').show();
             loaddivs(1);
             app.utils.loading(false);
+            localStorage.setItem("divisiondetails_live", 1);
         }
         else {
             //app.notify.error(data[0][0].Output_Message);

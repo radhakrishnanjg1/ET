@@ -37,14 +37,10 @@
             content: "\e080"; /* adjust as needed, taken from bootstrap.css */
         }
     </style>
-    <footer data-role="footer">
+    <!--<footer data-role="footer">
         <div class="text-center ">
             <div class="row">
-                <div class="col-xs-12">
-                    <!--<a data-role="button" data-rel="drawer"
-                       href="#left-drawer" class="faicon">
-                        <i class="fa fa-1-5x fa-list"></i>
-                    </a>-->
+                <div class="col-xs-12"> 
                     <a class="faicon"
                        data-bind="events: {click: onShow }">
                         <i class="fa fa-2x fa-refresh"></i>
@@ -52,7 +48,7 @@
                 </div>
             </div>
         </div>
-    </footer>
+    </footer>-->
     <div id="dvholidaysummary" style="display:none;" >
         <div class="panel panel-default">
             <div class="panel-heading text-center">
@@ -63,17 +59,17 @@
                     </div>
                 </div>
             </div>
-            <div class="panel-body" style="padding:0;">
+            <div class="panel-body aa" >
                 <div data-use- id="national-holidays" style="width:100% !important"></div>
             </div>
             <div class="panel-heading text-center bg-info">
                 <div class="row">
                     <div class="col-xs-12 horange">
-                        <b>  <span id="spanmonth"></span> Holiday Details</b>
+                   <span id="spanmonth"></span> Holiday Details 
                 </div>
                 </div>
             </div>
-            <div class="panel-body" style="padding:0">
+            <div class="panel-body" >
                 <div data-role="listview" id="holidays-listview"></div>
                 <script type="text/x-kendo-tmpl" id="template-holidays">
                     <div class="row">
@@ -88,13 +84,11 @@
             </div>
             <div class="panel-heading text-center">
                 <div class="row">
-                    <div class="col-xs-12 horange">
-                        <b>
+                    <div class="col-xs-12 horange"> 
                             <a class="accordion-toggle" data-toggle="collapse"
-                               data-parent="#accordion" href="#collapse1yearholidaydetails">
+                               data-parent="#accordion" href="#collapse1yearholidaydetails" style="text-decoration:none">
                                 <span id="spanyear"></span> Holiday Details
-                            </a>
-                        </b>
+                            </a> 
                     </div>
                 </div>
             </div>
@@ -115,6 +109,4 @@
             </div>
         </div>
     </div>
-</div>
-
-<!--#= kendo.toString(HolidayDate, "d") #-->
+</div> 

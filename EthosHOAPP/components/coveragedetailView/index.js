@@ -9,10 +9,15 @@
                 app.navigation.navigateoffline("coveragedetailView");
             }
             app.navigation.logincheck();
-            app.utils.loading(true);
-            fun_db_APP_Get_MSL_Coverage_Details(app.user.Login_ID);
+            if (localStorage.getItem("coveragedetails_live") == null || localStorage.getItem("coveragedetails_live") != 1) {
+                app.utils.loading(true);
+                fun_db_APP_Get_MSL_Coverage_Details(app.user.Login_ID);
+            }
         },
-
+        OnRefresh: function () {  
+            app.utils.loading(true);
+            fun_db_APP_Get_MSL_Coverage_Details(app.user.Login_ID); 
+        },
     });
 
     view.set('coveragedetailViewModel', coveragedetailViewModel);
@@ -43,6 +48,7 @@ function fun_db_APP_Get_MSL_Coverage_Details(LoginID) {
         var data = this.data();
         if (data[0].SNO > 0) {
             localStorage.setItem("coveragedetails", JSON.stringify(data)); // coverage details 
+            localStorage.setItem("coveragedetails_live", 1); 
             $('#dvvisionsummarycoveragedetails').show();
             loadchart(1);
             app.utils.loading(false);
@@ -99,7 +105,7 @@ function loadchart(filterid) {
         },
         valueAxis: [{ 
             labels: {
-                format: "{0} %"
+                format: "{0}"
             }
         },],
         tooltip: {

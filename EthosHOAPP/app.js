@@ -11,7 +11,7 @@
                 //transition: 'slide',
                 skin: 'flat', 
                 initial: 'components/authenticationView/view.html',//holidaysView authenticationView
-               // useNativeScrolling: true
+               // useNativeScrolling: true 
             });
         });
     };
