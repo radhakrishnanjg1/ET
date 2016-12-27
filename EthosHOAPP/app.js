@@ -16,6 +16,13 @@
         });
     };
 
+    var app_ethoshoclear = function () {
+        $(function () {
+            app.user = null;
+            localStorage.clear();
+        });
+    };
+
     $(document).ready(function() {
         var navigationShowMoreView = $('#navigation-show-more-view').find('ul'),
             allItems = $('#navigation-container-more').find('a'),
@@ -39,9 +46,11 @@
                 navigator.splashscreen.hide();
             }
             bootstrap();
+            app_ethoshoclear();
         });
     } else {
         bootstrap();
+        app_ethoshoclear();
     }
 
     app.keepActiveState = function _keepActiveState(item) {

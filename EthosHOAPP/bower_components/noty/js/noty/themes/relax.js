@@ -67,11 +67,11 @@ $.noty.themes.relax = {
         switch(this.options.layout.name) {
             case 'top':
                 this.$bar.css({
-                    borderBottom: '2px solid #eee',
-                    borderLeft  : '2px solid #eee',
-                    borderRight : '2px solid #eee',
-                    borderTop   : '2px solid #eee',
-                    boxShadow   : "0 2px 4px rgba(0, 0, 0, 0.1)"
+                    //borderBottom: '2px solid #eee',
+                    //borderLeft  : '2px solid #eee',
+                    //borderRight : '2px solid #eee',
+                    //borderTop   : '2px solid #eee',
+                    //boxShadow   : "0 2px 4px rgba(0, 0, 0, 0.1)"
                 });
                 break;
             case 'topCenter':
@@ -98,16 +98,16 @@ $.noty.themes.relax = {
                 break;
             case 'bottom':
                 this.$bar.css({
-                    borderTop   : '2px solid #eee',
-                    borderLeft  : '2px solid #eee',
-                    borderRight : '2px solid #eee',
-                    borderBottom: '2px solid #eee',
+                    //borderTop   : '2px solid #eee',
+                    //borderLeft  : '2px solid #eee',
+                    //borderRight : '2px solid #eee',
+                    //borderBottom: '2px solid #eee',
                    // boxShadow   : "0 -2px 4px rgba(0, 0, 0, 0.1)"
                 });
                 break;
             default:
                 this.$bar.css({
-                    border   : '2px solid #eee',
+                    //border   : '2px solid #eee',
                     //boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)"
                 });
                 break;
@@ -132,8 +132,8 @@ $.noty.themes.relax = {
                 this.$buttons.css({borderTop: '1px solid #0B90C4'});
                 break;
             case 'success':
-                this.$bar.css({ backgroundColor: '#006666', borderColor: '#7cdd77', color: '#FFF' });
-                this.$buttons.css({borderTop: '1px solid #50C24E'});
+                this.$bar.css({ backgroundColor: '#006666', color: '#FFF' });
+                //this.$buttons.css({borderTop: '1px solid #50C24E'});
                 break;
             default:
                 this.$bar.css({backgroundColor: '#000', borderColor: '#CCC', color: '#FFF'});

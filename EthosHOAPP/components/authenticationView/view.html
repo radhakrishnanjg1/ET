@@ -1,6 +1,6 @@
 <div id="authentication-view" data-role="view" data-title="Authentication" data-layout="main"
       data-model="app.authenticationView" data-show="app.authenticationView.onShow"
-     data-after-show="app.authenticationView.afterShow" 
+     data-after-show="app.authenticationView.afterShow"     
      class="authentication-view">
     <div class="signin-view" id="dvsignin">
         <form id="login-form" class="col-xs-12 col-sm-6 col-sm-offset-3">  
@@ -11,14 +11,14 @@
             </div>   
             <div class="form-group">
                 <!--<span class="input-group-addon"><i class="fa fa-user "></i></span>-->
-                <input  name="username" type="text" class="form-control" placeholder="Username" 
+                <input  id="username"     name="username" type="text" class="form-control" placeholder="Username" 
                        data-bind="value: authenticationViewModel.user.username" 
                        required autofocus/>
 
             </div> 
              <div class="form-group">
                 <!--<span class="input-group-addon "><i class="fa fa-lock"></i></span>-->
-                <input name="password"  type="password" class="form-control" placeholder="Password" 
+                <input id="password"  name="password"  type="password" class="form-control" placeholder="Password" 
                        data-bind="value: authenticationViewModel.user.password" required />
 
             </div> 

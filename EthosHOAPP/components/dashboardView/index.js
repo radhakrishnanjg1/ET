@@ -6,18 +6,18 @@
     var dashboardViewModel = kendo.observable({
         onShow: function () {
             if (!app.utils.checkinternetconnection()) {
-                app.navigation.navigateoffline("dashboardView");
+                return app.navigation.navigateoffline("dashboardView");
             }
             app.navigation.logincheck(); 
             if (localStorage.getItem("divisiondetails_live") == null || localStorage.getItem("divisiondetails_live") != 1) {
                 app.utils.loading(true);
-                fun_db_APP_Get_Activity_Details(app.user.Login_ID);
+                fun_db_APP_Get_Activity_Details($('#hdnLogin_ID').val());
             }
         },
 
         onRefresh: function () { 
             app.utils.loading(true);
-            fun_db_APP_Get_Activity_Details(app.user.Login_ID);
+            fun_db_APP_Get_Activity_Details($('#hdnLogin_ID').val());
         },
 
     });
@@ -48,11 +48,11 @@ function fun_db_APP_Get_Activity_Details(LoginID) {
     datasource.fetch(function () {
         var data = this.data();
         if (data[0].SNO >0 ) { 
-            localStorage.setItem("divisiondetails", JSON.stringify(data)); // division details 
+            localStorage.setItem("divisiondetails", JSON.stringify(data)); // division details
+            localStorage.setItem("divisiondetails_live", 1);
             $('#dvvisionsummary').show();
             loaddivs(1);
             app.utils.loading(false);
-            localStorage.setItem("divisiondetails_live", 1);
         }
         else {
             //app.notify.error(data[0][0].Output_Message);

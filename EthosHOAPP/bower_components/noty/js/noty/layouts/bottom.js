@@ -7,9 +7,9 @@ $.noty.layouts.bottom = {
         style   : function() {
             $(this).css({
                 bottom       : 0,
-                left         : '5%',
+                left         : 0,
                 position     : 'fixed',
-                width        : '90%',
+                width        : '100%',
                 height       : 'auto',
                 margin       : 0,
                 padding      : 0,

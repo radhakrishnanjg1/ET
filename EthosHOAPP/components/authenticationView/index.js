@@ -16,19 +16,22 @@
                + "manufacturer:" + device.manufacturer + "|"
                + "serial:" + device.serial;
                 app.utils.loading(true);
-                fun_db_APP_User_Logout(app.user.Login_ID, app.user.Employee_ID, deviceinformation);
-                view.set('authenticationViewModel', vm); 
+                var user = JSON.parse(localStorage.getItem("userdata"));
+                fun_db_APP_User_Logout(user.Login_ID, user.Employee_ID, deviceinformation);
+                $('#username').val('');
+                $('#password').val('');
                 app.user = null;
                 localStorage.clear();
             }
             if (app.user != null) {
-                app.navigation.navigatedashboard();
+                return app.navigation.navigatedashboard();
             } 
             if (!app.utils.checkinternetconnection()) {
-                app.navigation.navigateoffline("authenticationView");
+                return app.navigation.navigateoffline("authenticationView");
             } 
         },
-        afterShow: function () { 
+        afterShow: function () {
+           // app.notify.success("Welcome To Ethos App");
         }
     });
 
@@ -42,10 +45,10 @@
     var vm = kendo.observable({
         user: {
             displayName: '',
-            username: '',
-            password: '',
-            //username: 'doss',
-            //password: 'jerome',
+            //username: '',
+            //password: '',
+            username: 'doss',
+            password: 'jerome',
             email: ''
         },
         loginValidator: null,
@@ -78,8 +81,7 @@
                + "serial:" + device.serial;
             app.utils.loading(true);
             fun_dbchecklogin(username, password, deviceinformation); 
-        },
-
+        }, 
     });
 
     view.set('authenticationViewModel', vm);
@@ -100,7 +102,7 @@ function fun_dbchecklogin(username, password, deviceinfo) {
         },
         schema: {
             parse: function (response) {
-                var getlogin = response.Result.Data;
+                var getlogin = response.Result.Data[0];
                 return getlogin;
             }
         }
@@ -108,10 +110,11 @@ function fun_dbchecklogin(username, password, deviceinfo) {
 
     storelogin.fetch(function () {
         var data = this.data();
-        if (data[0][0].Output_ID == 1) {
-            app.user = data[0][0];
-            $('#dvusername').html(app.user.Username)
-            //localStorage.setItem("divisiondetails", JSON.stringify(data[1])); // division details 
+        if (data[0].Output_ID == 1) {
+            //app.user = data[0][0];
+            $('#dvusername').html(data[0].Username)
+            $('#hdnLogin_ID').val(data[0].Login_ID)
+            localStorage.setItem("userdata", JSON.stringify(data[0])); // userdata details 
 
             //localStorage.setItem("coveragedetails", JSON.stringify(data[2])); // coverage details 
 
@@ -122,7 +125,7 @@ function fun_dbchecklogin(username, password, deviceinfo) {
             app.utils.loading(false);
         }
         else {
-            app.notify.error(data[0][0].Output_Message);
+            app.notify.error(data[0].Output_Message);
             app.utils.loading(false);
         }
     });

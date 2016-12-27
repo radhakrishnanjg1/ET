@@ -373,11 +373,11 @@ footer
 }
 
     .btn-success:hover {
-        background-color: #FECC66 !important;
+        background-color: #26A65B !important;
     }
 
 .btn-primary {
-    background-color: #1373B9 !important;
+    background-color: #ff6600 !important;
     color: #fff !important;
     border: 0 !important;
     text-transform:uppercase ;
@@ -385,7 +385,7 @@ footer
     height:32px!important 
 }
 .btn-primary:hover {
-        background-color: #2A7FFF !important;
+        background-color: #FECC66 !important;
     }
 .param {
     padding-top: 16px !important;

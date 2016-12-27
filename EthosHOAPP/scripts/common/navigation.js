@@ -1,8 +1,8 @@
 (function () {
     app.navigation = {
         logincheck: function () {
-            //alert(app.user );
-            if (app.user === undefined)
+            //alert(app.user);
+            if ($('#hdnLogin_ID').val() === 0)
             {
                 return app.mobileApp.navigate('components/authenticationView/view.html');
             }  
@@ -50,6 +50,9 @@
 
         navigatecoveragedetail: function () {
             return app.mobileApp.navigate('components/coveragedetailView/view.html');
+        },
+        navigateoffline: function (redirect) {
+            return app.mobileApp.navigate('components/offlineView/view.html?pageid=' + redirect);
         },
     };
 }());

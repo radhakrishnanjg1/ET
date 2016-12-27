@@ -24,6 +24,8 @@
     <script src="bower_components/everlive/src/everlive.all.js"></script>
     <script src="bower_components/lodash/dist/lodash.min.js"></script>
     <script src="bower_components/noty/js/noty/packaged/jquery.noty.packaged.min.js"></script>
+    <script src="bower_components/noty/js/noty/layouts/bottom.js"></script>
+    <script src="bower_components/noty/js/noty/themes/metroui.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <!--App and utilities scripts-->
     <script src="app.js"></script>
@@ -93,9 +95,10 @@
             <li style="background-color:#f4f4f4 !important; color:#ff6600 !important;">
                 Hi &nbsp; <span id="dvusername">
                 </span>
+                <input type="hidden" id="hdnLogin_ID" value="0"/> 
             </li>
             <li data-role="button" data-click="app.navigation.navigatedashboard">
-                 <i class="fa fa-1-5x  fa-home"></i> Activity Details
+                 <i class="fa fa-1-5x  fa-pie-chart"></i> Activity Details
             </li>
 
             <li data-role="button" data-click="app.navigation.navigatecoveragedetail">

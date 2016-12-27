@@ -3,12 +3,12 @@
 app.holidaysView = kendo.observable({ 
     onShow: function () {
         if (!app.utils.checkinternetconnection()) {
-            app.navigation.navigateoffline("holidaysView");
+           return app.navigation.navigateoffline("holidaysView");
         }
         app.navigation.logincheck();
         if (localStorage.getItem("holidaydetails_live") == null || localStorage.getItem("holidaydetails_live") != 1) {
             app.utils.loading(true);
-            fun_db_APP_Get_Permited_Holiday_Master(app.user.Login_ID);
+            fun_db_APP_Get_Permited_Holiday_Master($('#hdnLogin_ID').val());
         }
     },
     afterShow: function () { },

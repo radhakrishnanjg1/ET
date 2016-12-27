@@ -10,19 +10,22 @@
         profile: null,
         uploader: null,
         photoChanged: false,
-        onShow: function (e) { 
+        onShow: function () { 
             if (!app.utils.checkinternetconnection()) {
-                app.navigation.navigateoffline("updateprofileView");
+                return app.navigation.navigateoffline("updateprofileView");
             }
-            app.navigation.logincheck(); 
-                var user = app.user;
+            app.navigation.logincheck();
+            var userdata = JSON.parse(localStorage.getItem("userdata"));
+            //var user = JSON.parse(Enumerable.From(userdata)
+            //      .ToJSON());
+            //var user = JSON.parse(JSON.parse(localStorage.getItem("userdata"))).ToJSON();
                 var textarea = $('#about');
                 var profile = kendo.observable({
-                    Email: user.Email,
-                    Mobile: user.Mobile,
-                    Username: user.Username,
-                    Birthday: user.Birthday,
-                    Designation: user.Designation,
+                    Email: userdata.Email,
+                    Mobile: userdata.Mobile,
+                    Username: userdata.Username,
+                    Birthday: userdata.Birthday,
+                    Designation: userdata.Designation,
 
                     //DisplayName: "Ram", 
                     //Birthday: "1965-12-12",
@@ -40,7 +43,7 @@
             }
 
             var profile = this.profile;
-            var user = app.user;
+            var user = JSON.parse(localStorage.getItem("userdata"));
             var model = {
                 Login_ID: user.Login_ID,
                 Employee_ID: user.Employee_ID,
@@ -57,13 +60,14 @@
             }
             // update profile in db
             fun_dbupdateprofiledetail(user.Login_ID, user.Employee_ID, profile.Email, profile.Mobile);
-            app.user.Email = profile.Email;
-            app.user.Mobile = profile.Mobile;
-            var profile = kendo.observable({
-                Email: "",
-                Mobile: "",
-            });
-            this.set('profile', profile);
+            //var userolddata = JSON.parse(localStorage.getItem("userdata"));
+            //userolddata.Email = profile.Email;
+            //userolddata.Mobile = profile.Mobile;
+            //var profile = kendo.observable({
+            //    Email: "",
+            //    Mobile: "",
+            //});
+            //this.set('profile', profile);
         }
     });
 
@@ -96,6 +100,8 @@ function fun_dbupdateprofiledetail(Login_ID, Employee_ID, Email, Mobile) {
         var data = this.data();
         if (data[0].Output_ID == 1) {
             app.notify.success(data[0].Output_Message);
+            app.navigation.navigateAuthentication();
+            app.utils.loading(false);
         }
         else {
             app.notify.error(data[0].Output_Message);

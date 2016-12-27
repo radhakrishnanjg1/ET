@@ -18,7 +18,7 @@ $.noty.themes.metroui = {
 
     this.$bar.css({
       overflow    : 'hidden',
-      margin      : '4px 0',
+      margin      : '0 0',
       borderRadius: '0'
     });
 
@@ -42,7 +42,7 @@ $.noty.themes.metroui = {
       padding        : 5,
       textAlign      : 'right',
       borderTop      : '1px solid #ccc',
-      backgroundColor: '#fff'
+      backgroundColor: '#000'
     });
 
     this.$buttons.find('button').css({
@@ -108,7 +108,7 @@ $.noty.themes.metroui = {
     switch (this.options.type) {
       case 'alert':
       case 'notification':
-        this.$bar.css({backgroundColor: '#fff', border: 'none', color: '#1d1d1d'});
+        this.$bar.css({backgroundColor: '#000', border: 'none', color: '#fff'});
         break;
       case 'warning':
         this.$bar.css({backgroundColor: '#FA6800', border: 'none', color: '#fff'});

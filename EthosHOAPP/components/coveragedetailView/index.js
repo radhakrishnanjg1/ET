@@ -6,23 +6,72 @@
     var coveragedetailViewModel = kendo.observable({
         onShow: function () {
             if (!app.utils.checkinternetconnection()) {
-                app.navigation.navigateoffline("coveragedetailView");
+                return app.navigation.navigateoffline("coveragedetailView");
             }
             app.navigation.logincheck();
             if (localStorage.getItem("coveragedetails_live") == null || localStorage.getItem("coveragedetails_live") != 1) {
                 app.utils.loading(true);
-                fun_db_APP_Get_MSL_Coverage_Details(app.user.Login_ID);
+                fun_db_APP_Get_MSL_Coverage_Details($('#hdnLogin_ID').val());
             }
         },
-        OnRefresh: function () {  
+        onRefresh: function () {  
             app.utils.loading(true);
-            fun_db_APP_Get_MSL_Coverage_Details(app.user.Login_ID); 
+            fun_db_APP_Get_Current_MSL_Coverage_Details($('#hdnLogin_ID').val());
         },
     });
 
     view.set('coveragedetailViewModel', coveragedetailViewModel);
 }());
 
+function fun_db_APP_Get_Current_MSL_Coverage_Details(LoginID) {
+    var datasource = new kendo.data.DataSource({
+        transport: {
+            read: {
+                url: "https://api.everlive.com/v1/wl2tdph1kbl8l9w8/Invoke/SqlProcedures/APP_Get_Current_MSL_Coverage_Details",
+                type: "POST",
+                dataType: "json",
+                data: {
+                    "LoginID": LoginID
+                }
+            }
+        },
+        schema: {
+            parse: function (response) {
+                var getdata = response.Result.Data[0];
+                return getdata;
+            }
+        },
+        error: function (e) {
+            if (e.errorThrown == "ERR_EMPTY_RESPONSE") {
+                app.notify.error('Error loading data please try again later.!');
+            }
+            else if (e.errorThrown == "Unauthorized") {
+                // ...navigate("#login");
+                //ERR_EMPTY_RESPONSE
+            }
+            else
+            {
+
+            }
+            app.utils.loading(false);
+        }
+    });
+
+    datasource.fetch(function () {
+        var data = this.data();
+        if (data[0].SNO > 0) {
+            localStorage.setItem("coveragedetailscurrentmonth", JSON.stringify(data)); // coverage details  
+            loadcurrentmonthdata(1);
+            loadchart(1);
+            app.utils.loading(false);
+        }
+        else {
+            //app.notify.error(data[0][0].Output_Message);
+            //app.utils.loading(false);
+        }
+    });
+
+}
 
 function fun_db_APP_Get_MSL_Coverage_Details(LoginID) {
     var datasource = new kendo.data.DataSource({
@@ -50,7 +99,8 @@ function fun_db_APP_Get_MSL_Coverage_Details(LoginID) {
             localStorage.setItem("coveragedetails", JSON.stringify(data)); // coverage details 
             localStorage.setItem("coveragedetails_live", 1); 
             $('#dvvisionsummarycoveragedetails').show();
-            loadchart(1);
+            loadchart(1); 
+           // fun_db_APP_Get_Current_MSL_Coverage_Details($('#hdnLogin_ID').val());
             app.utils.loading(false);
         }
         else {
@@ -83,21 +133,21 @@ function loadchart(filterid) {
         legend: {
             position: "bottom",  
             labels: {
-                font: "bold 12px HimalayaFont",
-            }
+                font: "bold 12px HimalayaFont", 
+            }, 
         },
         dataSource: {
             data: chartdata,
             group: { field: "Parameter" },
             sort: [
-            { "field": "OrderByValue", "dir": "asc" },  
+                 { "field": "OrderByValue", "dir": "asc" }, 
             ],
 
         }, 
         series: [{ 
             field: "ParameterValue",  
         }],
-        categoryAxis: {
+        categoryAxis: { 
             field: "DataMonth",
             labels: {
                 font: "bold 12px HimalayaFont",
@@ -110,50 +160,55 @@ function loadchart(filterid) {
         },],
         tooltip: {
             visible: true
-        }
+        }, 
     });
 
-    loadcurrentmonthdata(filterid, currentmonname);
+   // loadcurrentmonthdata(filterid, currentmonname);
 }
 
-function loadcurrentmonthdata(filterid, currentmonname) {
-    var localdata = JSON.parse(localStorage.getItem("coveragedetails")); 
+function loadcurrentmonthdata(filterid) {
+    var objdate = new Date(),
+    locale = "en-us",
+    currentmonname = objdate.toLocaleString(locale, { month: "short" });
+
+    var localdata = JSON.parse(localStorage.getItem("coveragedetailscurrentmonth"));
     var currentmonthdata = JSON.parse(Enumerable.From(localdata)
        .Where("$.SNO==" + filterid + " && $.DataMonth == '" + currentmonname + "'")
        .ToJSON());
+
+    //$("#spanchartdivisionname").html(currentmonthdata[0].Division_Name);
+    //$("#hdnchartslno").val(currentmonthdata[0].SNO);
+
     var divisionsource = new kendo.data.DataSource({
         data: currentmonthdata,
-        group: { field: "GroupByName" },
-        sort: [
-        { "field": "OrderByValue", "dir": "asc" }
-        ],
+        group: { field: "GroupByName" }, 
     });
     $("#chartdivisionlist-listview").kendoMobileListView({
         dataSource: divisionsource,
         template: $("#template-chartdivisionlist").html(),
     });
 
-    $('#chartdivisionlist-listview .km-group-title').hide();
-    //$('#chartdivisionlist-listview .km-group-title')
-    //   .css({ "border": "0", "background-color": "#006666", "text-align": "left", "color": "#fff" });//"background-color": "#006666"
-
+    $('#chartdivisionlist-listview .km-group-title').hide(); 
     $('#chartdivisionlist-listview li[class="km-group-container"]').wrap('<div class="row " ><div class="col-xs-12" style="padding:0"/></div>').contents().unwrap();
     $('#chartdivisionlist-listview ul[class="km-list"] li').wrap('<div class="col-xs-4"/>').contents().unwrap();
     $('#chartdivisionlist-listview div ul div[class="col-xs-4"]')
         .css({ "background-color": "#006666 !important", "color": "#33404E" });
 }
+
 function gotochartnextrecord(e) {
     var data = e.button.data();
     var direction = data.direction;
     var filterid = parseInt($('#hdnchartslno').val());
     filterid = findchartdirection(direction, filterid);
     loadchart(filterid);
+    loadcurrentmonthdata(filterid);
 }
 function gotoswipedirectioncoveragedetails(e) {
     var direction = e.direction;
     var filterid = parseInt($('#hdnchartslno').val());
     filterid = finddirection(direction, filterid);
     loadchart(filterid);
+    loadcurrentmonthdata(filterid);
 }
 function findchartdirection(direction, filterid) {
     if (direction == "right") {

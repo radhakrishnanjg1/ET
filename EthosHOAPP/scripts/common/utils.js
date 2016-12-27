@@ -38,9 +38,9 @@ var enableBackButton = function () { document.removeEventListener("backbutton", 
         return kendo.mobile.application.hideLoading();
     };
 
-    app.utils.isOwner = function (dataItem) {
-        return app.user.Id === dataItem.CreatedBy;
-    };
+    //app.utils.isOwner = function (dataItem) {
+    //    return app.user.Id === dataItem.CreatedBy;
+    //};
 
     app.utils.isInSimulator = function () {
         return !!window.navigator.simulator;

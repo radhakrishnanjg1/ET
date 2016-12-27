@@ -4,12 +4,11 @@
     var validator;
     var changepasswordViewModel = kendo.observable({
         profile: null,
-        onShow: function (e) { 
+        onShow: function () { 
             if (!app.utils.checkinternetconnection()) {
-                app.navigation.navigateoffline("changepasswordView");
+                return app.navigation.navigateoffline("changepasswordView");
             }
-            app.navigation.logincheck();  
-            var user = app.user;
+            app.navigation.logincheck();   
             var profile = kendo.observable({
                 oldpassword: "",
                 newpassword: "",
@@ -25,7 +24,7 @@
             }
 
             var profile = this.profile;
-            var user = app.user;
+            var user = JSON.parse(localStorage.getItem("userdata"));
             var model = {
                 Id: user.Employee_ID
             };
@@ -52,7 +51,7 @@
                 newpassword: "",
                 confirmpassword: "",
             });
-            app.user.Password = confirmpassword; 
+           // app.user.Password = confirmpassword; 
             this.set('profile', profile);
         }
     });
@@ -83,7 +82,9 @@ function fun_dbupdatepassword(login_id, password) {
     datacheck.fetch(function () {
         var data = this.data();
         if (data[0].Output_ID == 1) {
-            app.notify.success(data[0].Output_Message); 
+            app.notify.success(data[0].Output_Message);
+            app.navigation.navigateAuthentication();
+            app.utils.loading(false);
         }
         else {
             app.notify.error(data[0].Output_Message);

@@ -17,8 +17,9 @@
  
  
 function gotoonlinepage() { 
+    var page = $('#hdncurrentpage').val();  
     if (app.utils.checkinternetconnection()) {
-        var page = $('#hdncurrentpage').val(); 
-        app.mobileApp.navigate('components/' + page + '/view.html');
+        return app.mobileApp.navigate('components/' + page + '/view.html'); 
     }
+    app.navigation.navigateoffline(page);
 };

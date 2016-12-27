@@ -1,8 +1,9 @@
 (function () {
     $.noty.defaults = _.extend({}, $.noty.defaults, {
-        layout: 'bottom',
+        layout: 'center',
+        theme: 'metroui', // or relax or defaultTheme
         type: 'alert',
-        timeout: 2500
+        timeout: 3500
     });
 
     app.notify = {
@@ -11,16 +12,16 @@
             //console.error(error);
             //console.trace();
             var message = error || error //JSON.stringify(error);
-            noty({ text: message, type: 'error', layout: 'bottom' })
+            noty({ text: message, type: 'error', layout: 'center' })
         },
         info: function (text) {
             noty({ text: text });
         },
         success: function (text) {
-            noty({ text: text, type: 'success', layout: 'bottom' })
+            noty({ text: text, type: 'success', layout: 'center' })
         },
         warning: function (text) {
-            noty({ text: text, type: 'warning', layout: 'bottom' })
+            noty({ text: text, type: 'warning', layout: 'center' })
         },
         confirmation: function (text,callback) {
             text = text || 'Are you sure?';
