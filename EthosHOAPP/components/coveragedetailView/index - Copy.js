@@ -63,14 +63,13 @@ function fun_db_APP_Get_Current_MSL_Coverage_Details(LoginID) {
         if (data[0].SNO > 0) {
             loadchart(1);
             localStorage.setItem("coveragedetailscurrentmonth", JSON.stringify(data)); // coverage details  
-            localStorage.setItem("coveragedetailscurrentmonth_refresh", 1);
-          //  loadcurrentmonthdata(parseInt($('#hdnchartslno').val()));
             loadcurrentmonthdata(1);
+            // loadchart(1);
             app.utils.loading(false);
         }
         else {
             //app.notify.error(data[0][0].Output_Message);
-            app.utils.loading(false);
+            //app.utils.loading(false);
         }
     });
 
@@ -118,12 +117,13 @@ function fun_db_APP_Get_MSL_Coverage_Details(LoginID) {
             localStorage.setItem("coveragedetails_live", 1);
             $('#dvvisionsummarycoveragedetails').show();
             loadchart(1);
-            loadcurrentmonthdatafa(1); 
+            loadcurrentmonthdata(1);
+            // fun_db_APP_Get_Current_MSL_Coverage_Details($('#hdnLogin_ID').val());
             app.utils.loading(false);
         }
         else {
             //app.notify.error(data[0][0].Output_Message);
-            app.utils.loading(false);
+            //app.utils.loading(false);
         }
     });
 
@@ -139,12 +139,14 @@ function loadchart(filterid) {
         .Where("$.SNO==" + filterid + " && $.DataMonth != '" + currentmonname + "'")
         .ToJSON());
 
-    var chartcurrentdatafa = JSON.parse(Enumerable.From(localdata)
-       .Where("$.SNO==" + filterid + " && $.DataMonth == '" + currentmonname + "'")
-       .ToJSON());
-    localStorage.setItem("coveragedetailscurrentmonthfa", JSON.stringify(chartcurrentdatafa));
-    loadcurrentmonthdatafa(filterid);
-   
+     
+        var chartcurrentdata = JSON.parse(Enumerable.From(localdata)
+        .Where("$.DataMonth == '" + currentmonname + "'")
+        .ToJSON());
+        localStorage.setItem("coveragedetailscurrentmonth", JSON.stringify(chartcurrentdata));
+        loadcurrentmonthdata(filterid); 
+
+
     $("#spanchartdivisionname").html(chartdata[0].Division_Name);
     $("#hdnchartslno").val(chartdata[0].SNO);
 
@@ -188,37 +190,7 @@ function loadchart(filterid) {
         },
     });
 
-}
-
-function loadcurrentmonthdatafa(filterid) {
-    var objdate = new Date(),
-    locale = "en-us",
-    currentmonname = objdate.toLocaleString(locale, { month: "short" });
-
-    var localdata = JSON.parse(localStorage.getItem("coveragedetailscurrentmonthfa"));
-
-    var currentmonthdata = JSON.parse(Enumerable.From(localdata)
-       .Where("$.SNO==" + filterid + " && $.DataMonth == '" + currentmonname + "'")
-       .ToJSON());
-     
-    var divisionsource = new kendo.data.DataSource({
-        data: currentmonthdata,
-        group: { field: "GroupByName" },
-        sort: [
-                 { "field": "OrderByValue", "dir": "asc" },
-        ],
-    });
-    $("#chartdivisionlist-listview").kendoMobileListView({
-        dataSource: divisionsource,
-        template: $("#template-chartdivisionlist").html(),
-    });
-
-    $('#chartdivisionlist-listview .km-group-title').hide();
-    $('#chartdivisionlist-listview li[class="km-group-container"]').wrap('<div class="row " ><div class="col-xs-12" style="padding:0"/></div>').contents().unwrap();
-    $('#chartdivisionlist-listview ul[class="km-list"] li').wrap('<div class="col-xs-4"/>').contents().unwrap();
-    $('#chartdivisionlist-listview div ul div[class="col-xs-4"]')
-        .css({ "background-color": "#006666 !important", "color": "#33404E" });
-
+    // loadcurrentmonthdata(filterid, currentmonname);
 }
 
 function loadcurrentmonthdata(filterid) {
@@ -231,8 +203,8 @@ function loadcurrentmonthdata(filterid) {
        .Where("$.SNO==" + filterid + " && $.DataMonth == '" + currentmonname + "'")
        .ToJSON());
 
-    //$("#spanchartdivisionname").html(currentmonthdata[0].Division_Name);
-    //$("#hdnchartslno").val(currentmonthdata[0].SNO);
+    $("#spanchartdivisionname").html(currentmonthdata[0].Division_Name);
+    $("#hdnchartslno").val(currentmonthdata[0].SNO);
 
     var divisionsource = new kendo.data.DataSource({
         data: currentmonthdata,
@@ -260,12 +232,7 @@ function gotochartnextrecord(e) {
     var filterid = parseInt($('#hdnchartslno').val());
     filterid = findchartdirection(direction, filterid);
     loadchart(filterid);
-    //loadcurrentmonthdatafa(filterid);
-    if (localStorage.getItem("coveragedetailscurrentmonth_refresh") != null
-        || localStorage.getItem("coveragedetailscurrentmonth_refresh") == 1) {
-         
-        loadcurrentmonthdata(filterid);
-    }
+    loadcurrentmonthdata(filterid);
 }
 
 function gotoswipedirectioncoveragedetails(e) {
@@ -273,11 +240,7 @@ function gotoswipedirectioncoveragedetails(e) {
     var filterid = parseInt($('#hdnchartslno').val());
     filterid = finddirection(direction, filterid);
     loadchart(filterid);
-   // loadcurrentmonthdatafa(filterid);
-    if (localStorage.getItem("coveragedetailscurrentmonth_refresh") != null
-         || localStorage.getItem("coveragedetailscurrentmonth_refresh") == 1) {
-        loadcurrentmonthdata(filterid);
-    }
+    loadcurrentmonthdata(filterid);
 }
 
 function findchartdirection(direction, filterid) {
@@ -303,4 +266,3 @@ function findchartdirection(direction, filterid) {
     }
     return filterid;
 }
-

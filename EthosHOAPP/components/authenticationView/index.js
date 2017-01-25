@@ -1,12 +1,11 @@
 'use strict';
- 
+
 (function () {
 
     var view = app.authenticationView = kendo.observable({
         onShow: function (e) {
             var actionvalue = e.view.params.action;
-            if (actionvalue == "logout")
-            {
+            if (actionvalue == "logout") {
                 var deviceinformation = "action:Logout|" +
                 "model:" + device.model + "|"
                    + "cordova:" + device.cordova + "|"
@@ -25,13 +24,13 @@
             }
             if (app.user != null) {
                 return app.navigation.navigatedashboard();
-            } 
+            }
             if (!app.utils.checkinternetconnection()) {
                 return app.navigation.navigateoffline("authenticationView");
-            } 
+            }
         },
         afterShow: function () {
-           // app.notify.success("Welcome To Ethos App");
+            // app.notify.success("Welcome To Ethos App");
         }
     });
 
@@ -45,10 +44,10 @@
     var vm = kendo.observable({
         user: {
             displayName: '',
-            //username: '',
-            //password: '',
-            username: 'doss',
-            password: 'jerome',
+            username: '',
+            password: '',
+            //username: 'suresh',
+            //password: 'suresh',
             email: ''
         },
         loginValidator: null,
@@ -80,8 +79,8 @@
                + "manufacturer:" + device.manufacturer + "|"
                + "serial:" + device.serial;
             app.utils.loading(true);
-            fun_dbchecklogin(username, password, deviceinformation); 
-        }, 
+            fun_dbchecklogin(username, password, deviceinformation);
+        },
     });
 
     view.set('authenticationViewModel', vm);
@@ -154,7 +153,7 @@ function fun_db_APP_User_Logout(Login_ID, Employee_ID, deviceinfo) {
 
     datasource.fetch(function () {
         var data = this.data();
-        if (data[0].Output_ID == 1) {   
+        if (data[0].Output_ID == 1) {
             app.notify.success(data[0].Output_Message);
             app.utils.loading(false);
         }
@@ -165,4 +164,4 @@ function fun_db_APP_User_Logout(Login_ID, Employee_ID, deviceinfo) {
     });
 
 }
- 
+

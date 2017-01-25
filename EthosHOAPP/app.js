@@ -1,17 +1,17 @@
 'use strict';
 
-(function() {
+(function () {
     var app = {
-        data: {},   
+        data: {},
     };
 
-    var bootstrap = function() {
-        $(function() {
+    var bootstrap = function () {
+        $(function () {
             app.mobileApp = new kendo.mobile.Application(document.body, {
                 //transition: 'slide',
-                skin: 'flat', 
+                skin: 'flat',
                 initial: 'components/authenticationView/view.html',//holidaysView authenticationView
-               // useNativeScrolling: true 
+                // useNativeScrolling: true 
             });
         });
     };
@@ -23,16 +23,16 @@
         });
     };
 
-    $(document).ready(function() {
+    $(document).ready(function () {
         var navigationShowMoreView = $('#navigation-show-more-view').find('ul'),
             allItems = $('#navigation-container-more').find('a'),
             navigationShowMoreContent = '';
 
-            allItems.each(function(index) {
-                navigationShowMoreContent += '<li>' + allItems[index].outerHTML + '</li>';
-            });
+        allItems.each(function (index) {
+            navigationShowMoreContent += '<li>' + allItems[index].outerHTML + '</li>';
+        });
 
-             navigationShowMoreView.html(navigationShowMoreContent);
+        navigationShowMoreView.html(navigationShowMoreContent);
     });
 
     app.listViewClick = function _listViewClick(item) {
@@ -41,10 +41,13 @@
     };
 
     if (window.cordova) {
-        document.addEventListener('deviceready', function() {
-            if (navigator && navigator.splashscreen) {
-                navigator.splashscreen.hide();
+        document.addEventListener('deviceready', function () {
+            function onDeviceReady() {
+                if (navigator && navigator.splashscreen) {
+                    navigator.splashscreen.hide();
+                }
             }
+            document.addEventListener("deviceready", onDeviceReady, false);
             bootstrap();
             app_ethoshoclear();
         });
@@ -61,7 +64,7 @@
 
     window.app = app;
 
-    app.isOnline = function() {
+    app.isOnline = function () {
         if (!navigator || !navigator.connection) {
             return true;
         } else {
@@ -69,7 +72,7 @@
         }
     };
 
-    app.openLink = function(url) {
+    app.openLink = function (url) {
         if (url.substring(0, 4) === 'geo:' && device.platform === 'iOS') {
             url = 'http://maps.apple.com/?ll=' + url.substring(4, url.length);
         }
@@ -83,8 +86,8 @@
 
     /// start appjs functions
     /// end appjs functions
-    app.showFileUploadName = function(itemViewName) {
-        $('.' + itemViewName).off('change', 'input[type=\'file\']').on('change', 'input[type=\'file\']', function(event) {
+    app.showFileUploadName = function (itemViewName) {
+        $('.' + itemViewName).off('change', 'input[type=\'file\']').on('change', 'input[type=\'file\']', function (event) {
             var target = $(event.target),
                 inputValue = target.val(),
                 fileName = inputValue.substring(inputValue.lastIndexOf('\\') + 1, inputValue.length);
@@ -94,8 +97,8 @@
 
     };
 
-    app.clearFormDomData = function(formType) {
-        $.each($('.' + formType).find('input:not([data-bind]), textarea:not([data-bind])'), function(key, value) {
+    app.clearFormDomData = function (formType) {
+        $.each($('.' + formType).find('input:not([data-bind]), textarea:not([data-bind])'), function (key, value) {
             var domEl = $(value),
                 inputType = domEl.attr('type');
 
