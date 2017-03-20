@@ -43,7 +43,6 @@
     "ID_RESOLUTION_HD720P"
   ],
   "CorePlugins": [
-    "com.telerik.LivePatch",
     "com.telerik.plugin.telerikanalytics@3.4.1",
     "cordova-plugin-console",
     "cordova-plugin-device",
@@ -52,8 +51,13 @@
     "cordova-plugin-network-information",
     "cordova-plugin-splashscreen",
     "cordova-plugin-statusbar",
-    "cordova-plugin-whitelist",
-    "uk.co.whiteoctober.cordova.appversion@0.1.7"
+    "cordova-plugin-whitelist"
   ],
-  "CordovaPluginVariables": {}
+  "CordovaPluginVariables": {
+    "com.telerik.plugin.telerikanalytics": {
+      "AUTO_TRACK_EXCEPTIONS": "True",
+      "AUTO_TRACK_KENDO_EVENTS": "True",
+      "PRODUCT_ID": "3da4714d97e34436bcd6e4d4a79e0e13"
+    }
+  }
 }
