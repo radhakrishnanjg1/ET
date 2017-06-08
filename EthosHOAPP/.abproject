@@ -6,7 +6,7 @@
   "DisplayName": "ETHOS-HO",
   "Author": "Radhakrishnan J",
   "Description": "ETHOS-HO",
-  "BundleVersion": "1.0.1",
+  "BundleVersion": "1.0.2",
   "AndroidVersionCode": "1",
   "iOSDeviceFamily": [
     "1",
@@ -19,8 +19,7 @@
     "android.permission.INTERNET"
   ],
   "DeviceOrientations": [
-    "Portrait",
-    "Landscape"
+    "Portrait"
   ],
   "AndroidHardwareAcceleration": "true",
   "iOSStatusBarStyle": "Default",
@@ -43,11 +42,11 @@
     "ID_RESOLUTION_HD720P"
   ],
   "CorePlugins": [
+    "com.telerik.LivePatch",
     "com.telerik.plugin.telerikanalytics@3.4.1",
     "cordova-plugin-console",
     "cordova-plugin-device",
     "cordova-plugin-device-orientation",
-    "cordova-plugin-media",
     "cordova-plugin-network-information",
     "cordova-plugin-splashscreen",
     "cordova-plugin-statusbar",
@@ -55,9 +54,12 @@
   ],
   "CordovaPluginVariables": {
     "com.telerik.plugin.telerikanalytics": {
-      "AUTO_TRACK_EXCEPTIONS": "True",
-      "AUTO_TRACK_KENDO_EVENTS": "True",
-      "PRODUCT_ID": "3da4714d97e34436bcd6e4d4a79e0e13"
+      "AUTO_TRACK_EXCEPTIONS": "true",
+      "AUTO_TRACK_KENDO_EVENTS": "true",
+      "PRODUCT_ID": "wl2tdph1kbl8l9w8"
+    },
+    "com.telerik.LivePatch": {
+      "IS_API_ENABLED": "wl2tdph1kbl8l9w8"
     }
   }
 }

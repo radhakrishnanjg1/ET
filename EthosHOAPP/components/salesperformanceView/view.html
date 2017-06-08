@@ -1,0 +1,209 @@
+<div id="salesperformanceView" data-role="view" data-title="Sales Performance"
+     data-layout="afterlogin"
+     data-model="app.salesperformanceView.salesperformanceViewModel"
+     data-bind="events: { show: onShow }">
+    <style>  
+        /* Tabs panel */
+        #dvsalesperformanceView .tabbable-panel {
+            border: 1px solid #eee;
+            padding: 10px;
+        }
+
+        /* Default mode */
+        #dvsalesperformanceView .tabbable-line > .nav-tabs {
+            border: none;
+            margin: 0px;
+        }
+
+            .tabbable-line > .nav-tabs > li {
+                margin-right: 2px;
+            }
+
+                #dvsalesperformanceView .tabbable-line > .nav-tabs > li > a {
+                    border: 0;
+                    margin-right: 0;
+                    color: #737373;
+                }
+
+                    #dvsalesperformanceView .tabbable-line > .nav-tabs > li > a > i {
+                        color: #a6a6a6;
+                    }
+
+                .tabbable-line > .nav-tabs > li.open, .tabbable-line > .nav-tabs > li:hover {
+                    border-bottom: 4px solid #fbcdcf;
+                }
+
+                     #dvsalesperformanceView.tabbable-line > .nav-tabs > li.open > a, .tabbable-line > .nav-tabs > li:hover > a {
+                        border: 0;
+                        background: none !important;
+                        color: #333333;
+                    }
+
+                      #dvsalesperformanceView   .tabbable-line > .nav-tabs > li.open > a > i, .tabbable-line > .nav-tabs > li:hover > a > i {
+                            color: #a6a6a6;
+                        }
+
+                  #dvsalesperformanceView   .tabbable-line > .nav-tabs > li.open .dropdown-menu, .tabbable-line > .nav-tabs > li:hover .dropdown-menu {
+                        margin-top: 0px;
+                    }
+
+              #dvsalesperformanceView   .tabbable-line > .nav-tabs > li.active {
+                    border-bottom: 4px solid #ff6600;
+                    position: relative;
+                }
+
+                   #dvsalesperformanceView  .tabbable-line > .nav-tabs > li.active > a {
+                        border: 0;
+                        color: #333333;
+                    }
+
+                      #dvsalesperformanceView   .tabbable-line > .nav-tabs > li.active > a > i {
+                            color: #404040;
+                        }
+
+        #dvsalesperformanceView .tabbable-line > .tab-content {
+            margin-top: -3px;
+            background-color: #fff;
+            border: 0;
+            border-top: 1px solid #eee;
+            padding: 15px 0;
+        }
+
+       #dvsalesperformanceView  .portlet .tabbable-line > .tab-content {
+            padding-bottom: 0;
+        } 
+         
+    </style>
+
+    <div id="dvsalesperformanceView"
+         data-role="touch"
+         data-enable-swipe="1"
+         data-swipe="goto_sales_performance_swipedirection">
+        <div class="panel panel-custom">
+            <div class="tabbable-panel">
+                <div class="tabbable-line">
+                    <ul class="nav nav-tabs ">
+                        <li class="active">
+                            <a href="#tab_default_1" data-toggle="tab">
+                                Sales
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#tab_default_2" data-toggle="tab">
+                                Products
+                            </a>
+                        </li> 
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab_default_1">
+                            <p>
+                                I'm in Tab 1.
+                            </p>
+                            <p>
+                                Duis autem eum iriure dolor in hendrerit in vulputate velit esse molestie consequat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat.
+                            </p>
+                            <p>
+                                <a class="btn btn-success" href="http://j.mp/metronictheme" target="_blank">
+                                    Learn more...
+                                </a>
+                            </p>
+                        </div>
+                        <div class="tab-pane" id="tab_default_2">
+                            <p>
+                                Howdy, I'm in Tab 2.
+                            </p>
+                            <p>
+                                Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat. Ut wisi enim ad minim veniam, quis nostrud exerci tation.
+                            </p>
+                            <p>
+                                <a class="btn btn-warning" href="http://j.mp/metronictheme" target="_blank">
+                                    Click for more features...
+                                </a>
+                            </p>
+                        </div>
+                         
+                    </div>
+                </div>
+            </div>
+
+            <!--
+                        <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-1 text-center drawertopicon"
+                             data-role="button" data-click="goto_sales_performance_nextrecord"
+                             data-direction="right">
+                            <i class="fa fa-chevron-left"> </i>
+                        </div>
+                        <div class="col-xs-10 text-center text-uppercase horange">
+                            <span id="span_sales_performance_division_name"></span>
+                            <input type="hidden" id="hdn_sales_performance_slno">
+                            <input type="hidden" id="hdn_sales_performance_division_id">
+                        </div>
+                        <div class="col-xs-1 text-center drawertopicon" data-role="button"
+                             data-click="goto_sales_performance_nextrecord" data-direction="left">
+                            <i class="fa fa-chevron-right"> </i>
+                        </div>
+                    </div>
+                </div>
+                        <div class="panel-headingsubcustom">
+                <div class="row">
+                    <div class="col-xs-12">
+                        High Performers
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body padding0">
+                <div data-role="listview" id="listview-top10sales"></div>
+                <script type="text/x-kendo-tmpl" id="template-top10sales">
+                    <div class="row">
+                        <div class="col-xs-8">
+                            #: Employee_Name #
+                        </div>
+                        <div class="col-xs-4">
+                            #: Achv_Percentage #
+                        </div>
+                        <div class="col-xs-6 hgreen">
+                            #: Target_Value #
+                        </div>
+                        <div class="col-xs-6 horange">
+                            #: Achv_Value #
+                        </div>
+                    </div>
+                </script>
+            </div>
+
+            <div class="panel-body paddingBottom-5">
+                <div class="row">
+                    <div class="col-xs-12">
+                    </div>
+                </div>
+            </div>
+            <div class="panel-headingsubcustom">
+                <div class="row">
+                    <div class="col-xs-12">
+                        Low Performers
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body padding0">
+                <div data-role="listview" id="listview-bottom10sales"></div>
+                <script type="text/x-kendo-tmpl" id="template-bottom10sales">
+                    <div class="row">
+                        <div class="col-xs-8">
+                            #: Employee_Name #
+                        </div>
+                        <div class="col-xs-4">
+                            #: Achv_Percentage #
+                        </div>
+                        <div class="col-xs-6 hgreen">
+                            #: Target_Value #
+                        </div>
+                        <div class="col-xs-6 horange">
+                            #: Achv_Value #
+                        </div>
+                    </div>
+                </script>
+            </div>-->
+        </div>
+    </div>
+</div>

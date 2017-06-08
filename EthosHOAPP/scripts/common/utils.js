@@ -1,11 +1,30 @@
 // put these functions somewhere, where they will be visible for the view definition
 var emptyFunc = function () { };
-var disableBackButton = function () { document.addEventListener("backbutton", emptyFunc, false); };
-var enableBackButton = function () { document.removeEventListener("backbutton", emptyFunc); };
-
+var disableBackButton = function () {
+    document.addEventListener("backbutton", emptyFunc, false);
+    // app.utils.loading(false);
+};
+var enableBackButton = function () {
+    document.removeEventListener("backbutton", emptyFunc);
+};
 (function () {
     app.utils = app.utils || {};
-
+    //Get a device infor with actin
+    app.utils.deviceinformation = function (action) {
+        var deviceinformation = app.constants.appname + "|"
+             + app.constants.appversion + "|"
+             + app.constants.appmode + "|"
+             + "action:" + action + "|" 
+            + "action:" + action + "|"
+            + "model:" + device.model + "|"
+            + "cordova:" + device.cordova + "|"
+            + "platform:" + device.platform + "|"
+            + "uuid:" + device.uuid + "|"
+            + "version:" + device.version + "|"
+            + "manufacturer:" + device.manufacturer + "|"
+            + "serial:" + device.serial;
+        return deviceinformation;
+    };
     //Menual checking internet checking 
     app.utils.checkinternetconnection = function () {
         var networkState = navigator.connection.type;
@@ -21,20 +40,16 @@ var enableBackButton = function () { document.removeEventListener("backbutton", 
 
         // but not available now 
         if (states[networkState] == 'No network connection') {
-            // alert("we do something"); 
-            //$("#dvsignin").hide();
-            //$("#dvoffline").show(); 
-            // alert(0);
+            // alert("we do something");  
             return false;
         }
         return true;
-    }; 
-    
+    };
+
     app.utils.loading = function (load) {
         if (load) {
             return kendo.mobile.application.showLoading();
         }
-
         return kendo.mobile.application.hideLoading();
     };
 
@@ -52,7 +67,7 @@ var enableBackButton = function () { document.removeEventListener("backbutton", 
         var fileInputChangeSelector = fileInputSelector + ':file';
         var provider = app.data.defaultProvider;
 
-        that.callback = function(){};
+        that.callback = function () { };
         that.uri = '';
         that.file = null;
 
@@ -155,8 +170,8 @@ var enableBackButton = function () { document.removeEventListener("backbutton", 
                 });
             } else {
                 var file = that.file || {
-                        type: 'image/jpeg'
-                    };
+                    type: 'image/jpeg'
+                };
 
                 var cleanBase64 = picture.split(',')[1];
                 uploadImagePromise = provider.files.applyOffline(false).create({
@@ -167,16 +182,16 @@ var enableBackButton = function () { document.removeEventListener("backbutton", 
             }
 
             return uploadImagePromise.then(function (res) {
-                    var id;
-                    if (res.response) {
-                        var responseObject = JSON.parse(res.response);
-                        id = responseObject.Result[0].Id
-                    } else {
-                        id = res.result.Id;
-                    }
+                var id;
+                if (res.response) {
+                    var responseObject = JSON.parse(res.response);
+                    id = responseObject.Result[0].Id
+                } else {
+                    id = res.result.Id;
+                }
 
-                    return id;
-                })
+                return id;
+            })
                 .catch(app.notify.error);
         };
 
@@ -232,4 +247,5 @@ var enableBackButton = function () { document.removeEventListener("backbutton", 
             app.utils.processElement(img);
         });
     }
+
 }());

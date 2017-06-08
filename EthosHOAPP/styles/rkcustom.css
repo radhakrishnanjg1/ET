@@ -2,7 +2,8 @@
 
 @font-face {
     font-family: "HimalayaFont";
-    src: url("Font/OpenSans-Light.ttf") format("truetype");
+    /*src: url("Font/OpenSans-Light.ttf") format("truetype");*/
+    src: url("Font/OpenSans-Light.ttf");
 }
 
 body {
@@ -75,18 +76,29 @@ div,
 .input-group,
 .input-group-addon,
 a[data-role="button"],
-label, span, div, table, th, td  {
+label, span, div, table, th, td {
     font-family: "HimalayaFont";
 }
- 
+
 /* Custome rk tag and class start */
 .mandatory {
     color: #cc4141 !important;
     font-size: 1em !important;
 }
 
+.padding0 {
+    padding: 0px !important;
+}
+
+.paddingtop10 {
+    padding-top: 10px !important;
+}
 .paddingTopBottom-5 {
     padding-top: 5px !important;
+    padding-bottom: 5px !important;
+}
+
+.paddingBottom-5 {
     padding-bottom: 5px !important;
 }
 
@@ -208,7 +220,7 @@ mark, .mark {
 }
 
 .km-navbar {
-    background-color: #ff6600 !important;
+    background-color: #006666 !important;
     color: #fff !important;
 }
 
@@ -223,19 +235,39 @@ mark, .mark {
 }
 
 .km-flat .km-button {
-    border: 0 !important;
+    border: 0 !important; 
+    background: rgba(0,0,0,0);
 }
+
+
 
 .km-flat .km-loader:before {
     border-radius: 50% !important;
-    background-color: #ff6600 !important;  
+    background-color: #00C8B7 !important;
 }
 
-.km-group-title {
-    border: 0;
-    background-color: #DDD !important;
+.km-flat .km-loader:after {
+    content: "Please wait...";
+    display: block;
+    position: absolute;
+    margin-top: -2em;
+    margin-left: -2em;
+    width: 8em;
+    height: 4em;
+    top: 62%;
+    left: 47%;
+    color: #00C8B7 !important;
+    font-size: larger !important;
+    font-weight: 800 !important;
+}
+
+.km-group-title { 
     text-align: left;
-    color: #ff6600 !important;
+    background-color: #d3d3d3 !important;
+    color: #000 !important;
+    border: 0px !important;
+    padding: 10px 15px !important;
+    text-transform:uppercase;
 }
 
 
@@ -244,12 +276,14 @@ mark, .mark {
     margin: 0px !important;
     background-color: transparent !important;
 }
+
 .faicon {
     padding-left: 3px !important;
     padding-right: 3px !important;
     margin: 0px !important;
     background-color: transparent !important;
 }
+
 label {
     color: #3F3F3F;
 }
@@ -272,7 +306,7 @@ label {
 
     .nav > li:hover,
     .nav > li:focus {
-        color: #ff6600 !important;
+        color: #006666 !important;
     }
 
     .nav > li > span > i {
@@ -304,34 +338,36 @@ label {
 
     #right-drawer li {
         text-align: center !important;
+    } 
+@media(min-height : 480px ) {
+    #login-form  {
+        padding-top: 40% !important;
     }
 
-@media(min-height : 480px ) {
+    #right-drawer {
+        padding-top: 35% !important;
+    }
+
+    .full-height {
+        height: 480px !important;
+    }
+}
+
+@media(max-height : 320px ) {
     #login-form {
         padding-top: 20% !important;
     }
 
     #right-drawer {
-        padding-top: 30% !important;
+        padding-top: 20% !important;
     }
-    .full-height
-    {
-        height: 480px !important;
-    }
-}
-@media(max-height : 320px ) { 
-    #login-form {
-        padding-top: 10% !important;
-    }
-    #right-drawer {
-         padding-top: 20% !important;
-    }
-    .full-height
-    {
+
+    .full-height {
         height: 320px !important;
     }
 }
-.full-height { 
+
+.full-height {
     display: table !important;
 }
 
@@ -344,32 +380,33 @@ label {
 .vcenter {
 }
 
-footer
-{
-     background-color: #006666 !important;
-     color:#fff!important ;
-     padding:5px;
-     height:41px !important ;
-}
+footer {
+    background-color: #006666 !important;
+    color: #fff !important;
+    height: 40px !important;
+    font-size: 16px !important;
+    text-align: center;
+} 
 
-.horange
-{ 
-     color:#ff6600 !important ; 
-     font-weight:800 !important ;
+.horange {
+    color: #ff6600 !important;
+    font-weight: 800 !important;
 }
-
+.hgreen {
+    color: #006666 !important;
+    font-weight: 800 !important;
+}
 
 #dashboard-view .container-fluid {
     padding: 0;
     margin: 0px;
-}
-
+} 
 .btn-success {
     background-color: #006666 !important;
     color: #fff !important;
     border: 0;
-    text-transform:uppercase ;
-    letter-spacing :3px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
 }
 
     .btn-success:hover {
@@ -380,21 +417,72 @@ footer
     background-color: #ff6600 !important;
     color: #fff !important;
     border: 0 !important;
-    text-transform:uppercase ;
-    letter-spacing :3px;
-    height:32px!important 
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    height: 32px !important;
 }
-.btn-primary:hover {
+
+    .btn-primary:hover {
         background-color: #FECC66 !important;
     }
+
+.btn-info {
+    background-color: #5bc0de !important;
+    color: #fff !important;
+    border: 0;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+    .btn-info:hover {
+        background-color: #39B3D7 !important;
+    }
+
+.btn-danger {
+    background-color: #d9534f !important;
+    color: #fff !important;
+    border: 0;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+    .btn-danger:hover {
+        background-color: #cc4141 !important;
+    }
+
+.btn-leave {
+    background-color: #8bc3b9 !important;
+    color: #000 !important;
+    border: 0; 
+    text-transform: uppercase;
+}
+
+    .btn-leave:hover {
+        background-color: #8bc39b !important;
+    }
+
+.btn-leave1 {
+    background-color: forestgreen !important;
+    color: #fff !important;
+    border: 0;
+    width: 32%;
+}
+
+    .btn-leave1:hover {
+        background-color: green !important;
+    }
+
+.ftbtn {
+    padding-bottom: 6px !important;
+}
+
 .param {
     padding-top: 16px !important;
 }
 
 .paramvalue {
     background-color: #006666 !important;
-    color: #eee !important;
-    /*border: 1px solid !important;*/
+    color: #eee !important; 
     font-size: 16px !important;
     font-weight: 800;
     padding: 6px;
@@ -403,6 +491,8 @@ footer
 
 .paramname {
     margin-top: 8px;
+    font-size: 16px !important;
+    font-weight: 800;
 }
 
 .dropdown-control {
@@ -422,8 +512,201 @@ footer
 .fa-1-5x {
     font-size: 1.5em;
 }
-.fa-wifi
-{
-    color:#ff6600;
+
+.fa-wifi,#fa-map-marker{
+    color: #ff6600 !important;
 }
 /* Custome rk page header,button,loading and error class end */
+
+.panel-custom {
+    border: 0px !important;
+}
+
+.panel {
+    margin-bottom: 0px !important;
+}
+
+.panel-headingcustom {
+    background-color: #006666 !important;
+    color: #fff !important;
+    border: 0px !important;
+    padding: 10px 15px !important;
+    text-transform:uppercase;
+}
+
+.panel-headingsubcustom {
+    background-color: #d3d3d3 !important;
+    color: #000 !important;
+    border: 0px !important;
+    padding: 10px 15px !important;
+    text-transform:uppercase;
+} 
+.panel-headingmodal {
+    background-color: #006666 !important;
+    color: #fff !important;
+    border: 0px !important;
+    padding: 10px 15px !important; 
+}   
+ 
+.accordion-toggle:after {
+    /* symbol for "opening" panels */
+    font-family: 'Glyphicons Halflings'; /* essential for enabling glyphicon */
+    content: "\e114"; /* adjust as needed, taken from bootstrap.css */
+    float: right; /* adjust as needed */
+    color: #fff; /* adjust as needed */
+    padding-top: 3px;
+}
+
+.accordion-toggle.collapsed:after {
+    /* symbol for "collapsed" panels */
+    content: "\e080"; /* adjust as needed, taken from bootstrap.css */
+}
+
+/*.panel-footer {
+    padding: 3px 3px;
+}*/
+
+/* bootstrap modal*/
+ 
+#listview-leaveapprovedetail > .km-list > li,
+#listview-leavecancelapproval > .km-list > li,
+#listview-leavecanceldetail > .km-list > li #listview-leavehistory > .km-list > li {
+    padding: 0px !important;
+    background-color: darkorange !important;
+    color: white !important;
+}
+ 
+.leavedesc {
+    font-weight: 800;
+    padding-left: 10px !important;
+}
+
+.leavedays {
+    font-size: 18px !important;
+    font-weight: 800 !important;
+}
+
+.leavetype {
+    font-size: 16px !important;
+}
+
+.leavereason {
+    font-size: 14px !important;
+    font-weight: normal;
+}
+
+.k-list-scroller {
+    height: 90% !important;
+    overflow: scroll !important;
+    overflow-x: hidden !important;
+}
+
+.km-list input[type=checkbox] {
+    -webkit-appearance: checkbox;
+}
+/* LMS end */
+ 
+/*.km-flat .km-content {
+    background: url('../images/bg1.png') no-repeat;
+    background-position-x: center;
+    background-position-y: -100px;
+}*/
+
+.signbackground {
+    background: url('../images/bg1.png') no-repeat;
+    background-position-x: center;
+    background-position-y: -100px;
+} 
+#dvsignin .input-group-addon { 
+    background-color: #006666 !important;
+    color: #fff !important;
+}
+
+#dvsignin i {
+    background-color: #006666 !important;
+    color: #fff !important;
+}
+
+#dvsignin .btn-block {
+    background-color: #006666 !important;
+    color: #fff !important;
+    font-weight: bold;
+    text-align: center;
+    padding: 6px 0px 4px 0px !important;
+    height: 34px !important;
+}
+
+/*.k-dropdown-wrap .k-state-default
+{
+    background-color: #000 !important;
+}
+.k-dropdown-wrap .k-state-hover
+{
+    background-color: #00C8B7 !important;
+}
+.k-dropdown-wrap .k-state-selected
+{
+    background-color: #00C8B7 !important;
+}
+.k-item .k-state-selected .k-state-focused
+{
+    background-color: #00C8B7 !important;
+}*/
+/*.k-state-selected 
+{
+     background-color: #00C8B7 !important;
+}*/
+
+/*field locator start*/
+#map {
+    height: 325px;
+    width: 98% !important ;
+}
+
+#map-worklocation {
+    height: 100% !important;
+    width: 98% !important ;
+}
+/*field locator end*/
+
+/* override the  kendo grid start */
+
+/*headers*/
+
+.k-grid th.k-header,
+.k-grid-header
+{
+    background:#006666; 
+    text-transform:uppercase;
+    text-align:center;
+}
+
+.k-grid th.k-header,
+.k-grid th.k-header .k-link
+{
+   color:#fff !important;
+}
+
+/*rows*/
+
+.k-grid-content>table>tbody>tr
+{
+    background:#C9C9C9;
+    color:#000;
+}
+
+
+.k-grid-content>table>tbody>.k-alt
+{
+    background:#F0F0F0;
+    color:#000;
+}
+
+/*selection*/
+
+.k-grid table tr.k-state-selected
+{
+    background: #f99;
+    color: #fff;
+}
+/* override the  kendo grid end */

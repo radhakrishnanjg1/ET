@@ -38,10 +38,6 @@
 
         },
         updateProfile: function () {
-            if (!validator.validate()) {
-                return;
-            }
-
             var profile = this.profile;
             var user = JSON.parse(localStorage.getItem("userdata"));
             var model = {
@@ -50,24 +46,21 @@
                 Email: user.Email,
                 Mobile: user.Mobile,
             };
-
-            if (profile.Email !== user.Email) {
-                model.Email = profile.Email;
+            if (profile.Email === "") {
+                app.notify.error('Enter email!');
+                return;
             }
-
-            if (profile.Mobile !== user.Mobile) {
-                model.Mobile = profile.Mobile;
+            else if (profile.Mobile === "") {
+                app.notify.error('Enter mobile!');
+                return;
             }
-            // update profile in db
-            fun_dbupdateprofiledetail(user.Login_ID, user.Employee_ID, profile.Email, profile.Mobile);
-            //var userolddata = JSON.parse(localStorage.getItem("userdata"));
-            //userolddata.Email = profile.Email;
-            //userolddata.Mobile = profile.Mobile;
-            //var profile = kendo.observable({
-            //    Email: "",
-            //    Mobile: "",
-            //});
-            //this.set('profile', profile);
+            else if (user.Mobile != profile.Mobile || user.Email != profile.Email) {
+                // update profile in db
+                fun_dbupdateprofiledetail(user.Login_ID, user.Employee_ID, profile.Email, profile.Mobile);
+            }
+            else {
+                app.notify.error('Change the email or mobile!');
+            }
         }
     });
 

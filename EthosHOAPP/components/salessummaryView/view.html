@@ -1,0 +1,47 @@
+<div id="salessummaryView"
+     data-layout="afterlogin"
+     data-role="view"
+     data-title="Sales Summary"
+     data-model="app.salessummaryView.salessummaryViewModel"
+     data-bind="events: { show: onShow}">
+
+    <div id="dvsalessummaryView" style="display:none;"
+         class="panel panel-default">
+        <div class="panel-headingsubcustom">
+            <div class="row">
+                <div class="col-xs-12">
+                    Financial Year 2016-17
+                </div>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div id="chartpie-salessummary" style="height:340px;width:100% "></div>
+                <!--<div id="chartbar-salessummary"
+                     style="height:440px;width:100% "></div>-->
+                <div class="panel-headingsubcustom">
+                    <div class="row">
+                        <div class="col-xs-12 accordion-toggle" data-toggle="collapse"
+                             data-parent="#accordion" href="#collapse-salessummary">
+                            <a style="text-decoration:none">
+                                Sales Summary (In lakhs)
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body padding0">
+                    <div id="collapse-salessummary" class="panel-collapse in">
+                        <!-- grid start -->
+                        <div id="grid-salessummary"></div>
+                        <script id="template-grid-salessummary" type="text/x-kendo-template">
+                        </script>
+                        <!-- grid  end -->
+                    </div>
+                </div> 
+                <div class="panel-footer text-center">
+                    <b>Values are displayed in lakhs</b>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

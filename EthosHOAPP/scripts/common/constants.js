@@ -1,5 +1,8 @@
 (function () {
     app.constants = {
+        appname: 'App Name:ETHOS-HO',
+        appversion: 'App Version:1.0.2', //app.constants.appname
+        appmode: 'App Mode:Debug',
         authenticationModeSignin: 'signin',
         authenticationModeRegister: 'register',
         userprofilePicture: 'images/employee/',

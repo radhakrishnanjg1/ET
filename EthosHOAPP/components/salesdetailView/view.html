@@ -1,0 +1,150 @@
+<div id="salesdetailView" data-role="view" data-title="Sales Details"
+     data-layout="afterlogin"  
+     data-model="app.salesdetailView.salesdetailViewModel"
+     data-bind="events: { show: onShow }"> 
+    <div id="dvsalesdetailView" style="display:none;"
+         data-role="touch"
+         data-enable-swipe="1"
+         data-swipe="goto_sales_swipedirection">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-1 text-center drawertopicon"
+                         data-role="button" data-click="goto_sales_nextrecord"
+                         data-direction="right">
+                        <i class="fa fa-chevron-left"> </i>
+                    </div>
+                    <div class="col-xs-10 text-center text-uppercase horange">
+                        <span id="span_sales_Division_Name"></span>
+                        <input type="hidden" id="hdn_sales_SLNO">
+                        <input type="hidden" id="hdn_sales_Division_ID">
+                    </div>
+                    <div class="col-xs-1 text-center drawertopicon" data-role="button"
+                         data-click="goto_sales_nextrecord" data-direction="left">
+                        <i class="fa fa-chevron-right"> </i>
+                    </div>
+                </div> 
+            </div> 
+            <div class="panel-headingsubcustom">
+                <div class="row">
+                    <div class="col-xs-12">
+                        Financial Year 2016-17
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body padding0"> 
+                <!--<div class="form-group col-xs-12"> 
+                    <label class="control-label "> Employee</label>
+                    <input id="ddl_team_members" name="ddl_team_members"
+                            class="dropdown-control">
+                </div>--> 
+                <div id="listview-total-target" data-role="listview"
+                     class="km-widget
+                         km-listview km-listgroup">
+                    <ul class="km-list">
+                        <div class="col-xs-4">
+                            <div class="text-center param">
+                                <div class="paramvalue ">
+                                    <div id="span_sales_target_value" class="ParameterValue"></div>
+                                </div>
+                                <div class="paramname">
+                                    Target Value
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-4">
+                            <div class="text-center param">
+                                <div class="paramvalue ">
+                                    <div id="span_sales_achv_value" class="ParameterValue"></div>
+                                </div>
+                                <div class="paramname">
+                                    Achv. Value
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-4">
+                            <div class="text-center param">
+                                <div class="paramvalue ">
+                                    <div id="span_sales_achv_percentage" class="ParameterValue"></div>
+                                </div>
+                                <div class="paramname">
+                                    % Achv.
+                                </div>
+                            </div>
+                        </div>
+                    </ul>
+
+
+                </div>
+
+
+            </div>
+            <div class="panel-body">
+                <div id="chart-bar-financialyeardetails"
+                     style="height:240px"></div>
+            </div>
+
+            <!--<div class="panel-headingsubcustom">
+                <div class="row">
+                    <div class="col-xs-12 accordion-toggle" data-toggle="collapse"
+                         data-parent="#accordion" href="#collapse1top10_sales">
+                        <a style="text-decoration:none">
+                            High Performers
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div id="collapse1top10_sales" class="panel-collapse collapse">
+                <div class="panel-body padding0">
+                    <div data-role="listview" id="listview-top10sales"></div>
+                    <script type="text/x-kendo-tmpl" id="template-top10sales">
+                        <div class="row">
+                            <div class="col-xs-8">
+                                #: Employee_Name #
+                            </div>
+                            <div class="col-xs-4">
+                                #: Achv_Percentage #
+                            </div>
+                            <div class="col-xs-6 hgreen">
+                                #: Target_Value #
+                            </div>
+                            <div class="col-xs-6 horange">
+                                #: Achv_Value #
+                            </div>
+                        </div>
+                    </script>
+
+                    <div id="grid-top10sales"></div>
+                    <script id="template-grid-top10sales" type="text/x-kendo-template">
+                    </script>
+                </div>
+            </div>
+            <div class="panel-body paddingBottom-5">
+                <div class="row">
+                    <div class="col-xs-12" > 
+                    </div>
+                </div>
+            </div>
+            <div class="panel-headingsubcustom">
+                <div class="row">
+                    <div class="col-xs-12 accordion-toggle" data-toggle="collapse"
+                         data-parent="#accordion" href="#collapse1bottom10_sales">
+                        <a style="text-decoration:none">
+                            Low Performers
+                        </a>
+                    </div>
+                </div>
+            </div> 
+            <div id="collapse1bottom10_sales" class="panel-collapse collapse">
+                <div class="panel-body padding0"> 
+                    <div id="grid-bottom10sales"></div>
+                    <script id="template-grid-bottom10sales" type="text/x-kendo-template">
+                    </script>
+                </div>
+            </div>-->
+            <div class="panel-footer text-center">
+                <b>Values are displayed in lakhs</b>
+            </div>
+        </div>
+    </div>
+</div>

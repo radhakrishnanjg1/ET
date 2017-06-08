@@ -6,21 +6,10 @@
         onShow: function (e) {
             var actionvalue = e.view.params.action;
             if (actionvalue == "logout") {
-                var deviceinformation = "action:Logout|" +
-                "model:" + device.model + "|"
-                   + "cordova:" + device.cordova + "|"
-               + "platform:" + device.platform + "|"
-               + "uuid:" + device.uuid + "|"
-               + "version:" + device.version + "|"
-               + "manufacturer:" + device.manufacturer + "|"
-               + "serial:" + device.serial;
-                app.utils.loading(true);
                 var user = JSON.parse(localStorage.getItem("userdata"));
-                fun_db_APP_User_Logout(user.Login_ID, user.Employee_ID, deviceinformation);
-                $('#username').val('');
-                $('#password').val('');
-                app.user = null;
-                localStorage.clear();
+                app.utils.loading(true);
+                fun_db_APP_User_Logout(user.Login_ID, user.Employee_ID, app.utils.deviceinformation('Logout'));
+                
             }
             if (app.user != null) {
                 return app.navigation.navigatedashboard();
@@ -37,49 +26,41 @@
     var provider = app.data.defaultProvider;
     var mode = app.constants.authenticationModeSignin;
     var registerRedirect = 'activitiesView';
-    var signinRedirect = 'activitiesView';
-
-
-
+    var signinRedirect = 'activitiesView'; 
     var vm = kendo.observable({
         user: {
             displayName: '',
-            username: '',
-            password: '',
-            //username: 'suresh',
-            //password: 'suresh',
+            //username: '',
+            //password: '',
+            //username: 'nikhil',
+            //password: 'nikhil',
+            //username: 'JIANDANI',
+            //password: 'EMP133',
+            //username: 'ram',
+            //password: 'vishal123',
+            username: 'doss',
+            password: 'jerome',
             email: ''
         },
         loginValidator: null,
         registerValidator: null,
         signin: function (username, password) {
-            this.loginValidator = app.validate.getValidator('#login-form');
-            if (!this.loginValidator.validate()) {
-                //$(".k-invalid-msg").show();
-                return;
-            }
-
             var model = vm.user;
-            if (typeof username !== 'string') {
+            if ($('#username').val() == '' || model.username == '' || model.username == undefined) {
                 username = model.username;
-
+                app.notify.error("Enter username!");
+                return false;
             }
 
-            if (typeof password !== 'string') {
+            if ($('#password').val() == '' || model.password == '' || model.password == undefined) {
                 password = model.password;
+                app.notify.error("Enter password!");
+                return false;
             }
-
-
-            var deviceinformation = "action:Login|" +
-                "model:" + device.model + "|"
-                   + "cordova:" + device.cordova + "|"
-               + "platform:" + device.platform + "|"
-               + "uuid:" + device.uuid + "|"
-               + "version:" + device.version + "|"
-               + "manufacturer:" + device.manufacturer + "|"
-               + "serial:" + device.serial;
-            app.utils.loading(true);
-            fun_dbchecklogin(username, password, deviceinformation);
+            else {
+                app.utils.loading(true);
+                fun_db_APP_Verify_User_Authentication(model.username, model.password, app.utils.deviceinformation('Login'));
+            }
         },
     });
 
@@ -87,7 +68,7 @@
 }());
 
 
-function fun_dbchecklogin(username, password, deviceinfo) {
+function fun_db_APP_Verify_User_Authentication(username, password, deviceinfo) {
     var storelogin = new kendo.data.DataSource({
         transport: {
             read: {
@@ -111,15 +92,10 @@ function fun_dbchecklogin(username, password, deviceinfo) {
         var data = this.data();
         if (data[0].Output_ID == 1) {
             //app.user = data[0][0];
-            $('#dvusername').html(data[0].Username)
-            $('#hdnLogin_ID').val(data[0].Login_ID)
+            $('#dvusername').html(data[0].Username);
+            $('#hdnLogin_ID').val(data[0].Login_ID);
+            localStorage.clear();
             localStorage.setItem("userdata", JSON.stringify(data[0])); // userdata details 
-
-            //localStorage.setItem("coveragedetails", JSON.stringify(data[2])); // coverage details 
-
-            //localStorage.setItem("holidaydetails", JSON.stringify(data[3])); // holiday details 
-
-            //redirect dashboard page 
             app.navigation.navigatedashboard();
             app.utils.loading(false);
         }
@@ -156,6 +132,10 @@ function fun_db_APP_User_Logout(Login_ID, Employee_ID, deviceinfo) {
         if (data[0].Output_ID == 1) {
             app.notify.success(data[0].Output_Message);
             app.utils.loading(false);
+            $('#username').val('');
+            $('#password').val('');
+            app.user = null;
+            localStorage.clear();
         }
         else {
             app.notify.error(data[0].Output_Message);

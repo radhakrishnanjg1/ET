@@ -5,14 +5,11 @@
     <footer data-role="footer"   >
         <div class="text-center ">
             <div class="row">
-                <div class="col-xs-12">
-                    <!--<a data-role="button" data-rel="drawer"
-                       href="#left-drawer" class="faicon">
-                        <i class="fa fa-1-5x fa-list"></i>
-                    </a>-->
+                <div class="col-xs-12"> 
                     <a 
                        data-bind="events: {click: onRefresh }">
-                        <i class="fa fa-2x fa-refresh"></i>
+                        <i style="padding-top:4px!important "
+                           class="fa fa-2x fa-refresh"></i> 
                     </a>
                 </div>
             </div>
@@ -21,18 +18,22 @@
     <div id="dvvisionsummarycoveragedetails" style="display:none;"
           data-role="touch"
          data-enable-swipe="1"
-         data-swipe="gotoswipedirectioncoveragedetails">
+         data-swipe="goto_coveragedetails_swipedirection">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <div class="row">
-                    <div class="col-xs-1 text-center drawertopicon" data-role="button" data-click="gotochartnextrecord" data-direction="right">
+                    <div class="col-xs-1 text-center drawertopicon" 
+                         data-role="button" data-click="goto_coveragedetails_nextrecord" data-direction="right">
                         <i class="fa fa-chevron-left"> </i>
                     </div>
                     <div class="col-xs-10 text-center text-uppercase horange"> 
-                            <span id="spanchartdivisionname"></span> 
-                        <input type="hidden" id="hdnchartslno">
+                            <span id="span_coverage_chartdivisionname"></span> 
+                        <input type="hidden" id="hdn_coverage_chartslno">
+                        <input type="hidden" id="hdn_coverage_division_id">
+
                     </div>
-                    <div class="col-xs-1 text-center drawertopicon" data-role="button" data-click="gotochartnextrecord" data-direction="left">
+                    <div class="col-xs-1 text-center drawertopicon" 
+                         data-role="button" data-click="goto_coveragedetails_nextrecord" data-direction="left">
                         <i class="fa fa-chevron-right"> </i>
                     </div>
                 </div>

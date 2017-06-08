@@ -15,29 +15,36 @@
                 confirmpassword: "",
             });
             this.set('profile', profile);
-            validator = app.validate.getValidator('#change-password-form');
 
         },
         updatepassword: function () {
-            if (!validator.validate()) {
-                return;
-            }
-
             var profile = this.profile;
             var user = JSON.parse(localStorage.getItem("userdata"));
             var model = {
                 Id: user.Employee_ID
             };
-            if (profile.oldpassword !== user.Password) {
-                app.notify.error('Password is not matched.!');
+            if (profile.oldpassword === "") {
+                app.notify.error('Enter old password!');
                 return;
             }
-            if (profile.oldpassword === profile.newpassword) {
-                app.notify.error('Old password and New password should be not same.!');
+            else if (profile.newpassword === "") {
+                app.notify.error('Enter new password!');
                 return;
             }
-            if (profile.newpassword !== profile.confirmpassword) {
-                app.notify.error('New password and confirm password are not same.!');
+            else if (profile.confirmpassword === "") {
+                app.notify.error('Enter confirm password!');
+                return;
+            }
+            else if (profile.oldpassword !== user.Password) {
+                app.notify.error('Password is not matched!');
+                return;
+            }
+            else if (profile.oldpassword === profile.newpassword) {
+                app.notify.error('Old password and new password should be not same!');
+                return;
+            }
+            else if (profile.newpassword !== profile.confirmpassword) {
+                app.notify.error('New password and confirm password must be same!');
                 return;
             }
 
@@ -51,7 +58,7 @@
                 newpassword: "",
                 confirmpassword: "",
             });
-           // app.user.Password = confirmpassword; 
+            // app.user.Password = confirmpassword; 
             this.set('profile', profile);
         }
     });
