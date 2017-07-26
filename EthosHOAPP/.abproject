@@ -6,11 +6,10 @@
   "DisplayName": "ETHOS-HO",
   "Author": "Radhakrishnan J",
   "Description": "ETHOS-HO",
-  "BundleVersion": "1.0.2",
+  "BundleVersion": "1.0.1",
   "AndroidVersionCode": "1",
   "iOSDeviceFamily": [
-    "1",
-    "2"
+    "1"
   ],
   "iOSBackgroundMode": [],
   "ProjectTypeGuids": "{070BCB52-5A75-4F8C-A973-144AF0EAFCC9}",

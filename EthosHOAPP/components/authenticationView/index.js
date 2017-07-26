@@ -9,7 +9,7 @@
                 var user = JSON.parse(localStorage.getItem("userdata"));
                 app.utils.loading(true);
                 fun_db_APP_User_Logout(user.Login_ID, user.Employee_ID, app.utils.deviceinformation('Logout'));
-                
+
             }
             if (app.user != null) {
                 return app.navigation.navigatedashboard();
@@ -26,20 +26,12 @@
     var provider = app.data.defaultProvider;
     var mode = app.constants.authenticationModeSignin;
     var registerRedirect = 'activitiesView';
-    var signinRedirect = 'activitiesView'; 
+    var signinRedirect = 'activitiesView';
     var vm = kendo.observable({
         user: {
             displayName: '',
-            //username: '',
-            //password: '',
-            //username: 'nikhil',
-            //password: 'nikhil',
-            //username: 'JIANDANI',
-            //password: 'EMP133',
-            //username: 'ram',
-            //password: 'vishal123',
-            username: 'doss',
-            password: 'jerome',
+            username: '',
+            password: '',
             email: ''
         },
         loginValidator: null,
@@ -82,7 +74,7 @@ function fun_db_APP_Verify_User_Authentication(username, password, deviceinfo) {
         },
         schema: {
             parse: function (response) {
-                var getlogin = response.Result.Data[0];
+                var getlogin = response.Result.Data;
                 return getlogin;
             }
         }
@@ -90,17 +82,18 @@ function fun_db_APP_Verify_User_Authentication(username, password, deviceinfo) {
 
     storelogin.fetch(function () {
         var data = this.data();
-        if (data[0].Output_ID == 1) {
+        if (data[0][0].Output_ID == 1) {
             //app.user = data[0][0];
-            $('#dvusername').html(data[0].Username);
-            $('#hdnLogin_ID').val(data[0].Login_ID);
+            $('#dvusername').html(data[0][0].Username);
+            $('#hdnLogin_ID').val(data[0][0].Login_ID);
             localStorage.clear();
-            localStorage.setItem("userdata", JSON.stringify(data[0])); // userdata details 
+            localStorage.setItem("userdata", JSON.stringify(data[0][0])); // userdata details 
+            $('#dvlast_visited').html(data[1][0].Last_Visited);
             app.navigation.navigatedashboard();
             app.utils.loading(false);
-        }
+        } 
         else {
-            app.notify.error(data[0].Output_Message);
+            app.notify.error(data[0][0].Output_Message);
             app.utils.loading(false);
         }
     });
@@ -141,7 +134,6 @@ function fun_db_APP_User_Logout(Login_ID, Employee_ID, deviceinfo) {
             app.notify.error(data[0].Output_Message);
             app.utils.loading(false);
         }
-    });
-
+    }); 
 }
 
