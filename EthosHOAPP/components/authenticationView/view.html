@@ -7,13 +7,13 @@
     <div class="signin-view" id="dvsignin">
         <form id="login-form" class="col-xs-10 col-xs-offset-1  col-sm-6 col-sm-offset-3">
             <div class="text-left marginTopBottom-10">
-                <img src="images/ethoslogo.png" alt="logo" /> 
+                <img src="images/ethoslogo.png" alt="logo" />
             </div>
             <div class="marginTopBottom-10">
             </div>
             <div class="input-group">
                 <span class="input-group-addon">
-                    <i class="fa fa-user" style="width:15px"></i>
+                    <i class="fa fa-1-5x fa-user" style="color:#f05922;width:15px"></i>
                 </span>
                 <input id="username" name="username" type="text"
                        class="form-control"
@@ -24,7 +24,7 @@
             </div>
             <div class="input-group">
                 <span class="input-group-addon">
-                    <i class="fa fa-key"></i>
+                    <i class="fa fa-1-5x fa-lock" style="color:#f05922"></i>
                 </span>
                 <input id="password" name="password" type="password"
                        class="form-control"
@@ -34,11 +34,16 @@
             <div style="height:20px!important ">
             </div>
             <div class="form-group">
-                <div class="btn-block"
+                <div class="btn-block btn-signin"
                      data-bind="events: { click: authenticationViewModel.signin }">
                     L O G I N
                 </div>
             </div>
         </form>
+        <div style="height:20px!important;text-align:center ">
+            <h6 class="hgreen" id="h6appdescritpion"></h6>
+        </div>
     </div>
 </div>
+
+

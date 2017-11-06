@@ -4,6 +4,12 @@
 
     var view = app.authenticationView = kendo.observable({
         onShow: function (e) {
+            // if (localStorage.getItem("authenticationviewloginmessage_live") == null ||
+            //    localStorage.getItem("authenticationviewloginmessage_live") != 1) {
+                var Mobile_APP_Name = app.constants.appname.split(':')[1];
+                app.utils.loading(true);
+                fun_db_APP_Get_Mobile_APP_Login_Message(Mobile_APP_Name);
+            //}
             var actionvalue = e.view.params.action;
             if (actionvalue == "logout") {
                 var user = JSON.parse(localStorage.getItem("userdata"));
@@ -89,7 +95,7 @@ function fun_db_APP_Verify_User_Authentication(username, password, deviceinfo) {
             localStorage.clear();
             localStorage.setItem("userdata", JSON.stringify(data[0][0])); // userdata details 
             $('#dvlast_visited').html(data[1][0].Last_Visited);
-            app.navigation.navigatedashboard();
+            app.navigation.navigateAppDashboardView();
             app.utils.loading(false);
         } 
         else {
@@ -136,4 +142,34 @@ function fun_db_APP_User_Logout(Login_ID, Employee_ID, deviceinfo) {
         }
     }); 
 }
+
+function fun_db_APP_Get_Mobile_APP_Login_Message(Mobile_APP_Name) {
+    var datasource = new kendo.data.DataSource({
+        transport: {
+            read: {
+                url: "https://api.everlive.com/v1/wl2tdph1kbl8l9w8/Invoke/SqlProcedures/APP_Get_Mobile_APP_Login_Message",
+                type: "POST",
+                dataType: "json",
+                data: {
+                    "Mobile_APP_Name": Mobile_APP_Name
+                }
+            }
+        },
+        schema: {
+            parse: function (response) {
+                var getdata = response.Result.Data[0];
+                return getdata;
+            }
+        }
+    });
+    datasource.fetch(function () {
+        var data = this.data();
+        app.utils.loading(false);
+        $('#h6appdescritpion').html(data[0].Login_Message);
+        localStorage.setItem("authenticationviewloginmessage_live", 1);
+    });
+}
+
+
+
 

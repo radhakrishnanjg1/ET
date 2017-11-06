@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <title>Ethos HO APP</title>
@@ -44,12 +44,13 @@
     <script src="dataProviders/defaultProvider.js"></script>
     <!--new pages scripts-->
     <!--left-->
+    <script src="components/AppDashboardView/index.js"></script>
     <script src="components/authenticationView/index.js"></script>
     <script src="components/dashboardView/index.js"></script>
     <script src="components/coveragedetailView/index.js"></script>
-    <script src="components/salessummaryView/index.js"></script>
+    <!--<script src="components/salessummaryView/index.js"></script>
     <script src="components/salesdetailView/index.js"></script>
-    <script src="components/salesperformanceView/index.js"></script>
+    <script src="components/salesperformanceView/index.js"></script>-->
     <script src="components/holidaysView/index.js"></script>
     <!--right-->
     <script src="components/updateprofileView/index.js"></script>
@@ -86,7 +87,7 @@
         </div>-->
     </div>
     <div data-role="drawer" id="left-drawer" data-title="left"
-         data-swipe-to-open-views="['dashboard-view',
+         data-swipe-to-open-views="['AppDashboardView','dashboard-view',
          'coveragedetail-view',
          'holidays-view',
          'salessummaryView',
@@ -104,18 +105,18 @@
                 </span>
                 <input type="hidden" id="hdnLogin_ID" value="0" />
             </li>
-            <li data-role="button" data-click="app.navigation.navigatedashboard">
-                <i class="fa fa-1-5x  fa-pie-chart"></i> Activity Details
+            <li data-role="button" data-click="app.navigation.navigateAppDashboardView">
+                <i class="fa fa-1-5x  fa-pie-chart"></i> Dashboard
             </li>
-            <li data-role="button" data-click="app.navigation.navigatecoveragedetail">
+            <!--<li data-role="button" data-click="app.navigation.navigatecoveragedetail">
                 <i class="fa fa-1-5x  fa-bar-chart"></i> Coverage Details
-            </li>
-            <li data-role="button" data-click="app.navigation.navigatesalessummary">
+            </li>-->
+            <!--<li data-role="button" data-click="app.navigation.navigatesalessummary">
                 <i class="fa fa-1-5x  fa-money"></i> Sales Summary
             </li>
             <li data-role="button" data-click="app.navigation.navigatesalesdetail">
                 <i class="fa fa-1-5x  fa-inr"></i> Sales Details
-            </li>
+            </li>-->
             <!--<li data-role="button" data-click="app.navigation.navigatesalesperformance">
                 <i class="fa fa-1-5x  fa-line-chart"></i> Sales Performance
             </li>-->
@@ -133,7 +134,7 @@
         </footer>
     </div>
     <div data-role="drawer" id="right-drawer" data-position="right"
-         data-swipe-to-open-views="['dashboard-view',
+         data-swipe-to-open-views="['AppDashboardView','dashboard-view',
          'coveragedetail-view',
          'holidays-view',
          'salessummaryView',

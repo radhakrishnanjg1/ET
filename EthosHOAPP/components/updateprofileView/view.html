@@ -11,7 +11,7 @@
             </a>
             <div data-role="view-title"></div>
             <div data-align="right">
-                <a data-role="button" data-click="app.navigation.back"
+                <a data-role="button" data-click="app.navigation.navigateAppDashboardView"
                    class="faicon">
                     <i class="fa fa-1-5x fa-arrow-left"></i>
                 </a>
@@ -27,6 +27,18 @@
             </div>
         </div>
     </div>
+    <footer data-role="footer">
+        <div class="btn-group btn-group-justified">
+            <a class="btn btn-danger" data-role="button"
+               data-click="app.navigation.navigateAppDashboardView">
+                <i class="fa fa-arrow-left"></i> Back
+            </a>
+            <a class="btn btn-primary"
+               data-bind="events: {click: updateProfile }">
+                <i class="fa fa-save"></i> Save
+            </a>
+        </div>
+    </footer>
     <div class="panel panel-custom padding0">
         <div class="panel-body">
             <div class="row">
@@ -51,18 +63,6 @@
                 </form>
             </div>
         </div>
-        <div class="panel-footer">
-            <div class="pull-right">
-                <a class="btn btn-primary" data-role="button"
-                   data-click="app.navigation.back">
-                    Back
-                </a>
-                <a class="btn btn-success"
-                   data-bind="events: {click: updateProfile }">
-                    Save
-                </a>
-            </div>
-            <div class="clearfix"></div>
-        </div>
+
     </div>
 </div>

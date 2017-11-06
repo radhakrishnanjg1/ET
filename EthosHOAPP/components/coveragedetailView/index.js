@@ -90,7 +90,7 @@ function loadchart(filterid) {
             data: chartdata,
             group: { field: "Parameter" },
             sort: [
-            { "field": "OrderByValue", "dir": "asc" },
+            { "field": "OrderByChart", "dir": "asc" },
             ],
 
         },

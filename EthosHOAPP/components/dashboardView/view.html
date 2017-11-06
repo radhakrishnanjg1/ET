@@ -4,18 +4,18 @@
      data-model="app.dashboardView.dashboardViewModel"
      data-bind="events: { show: onShow }"  >
     <footer data-role="footer">
-        <div class="text-center ">
-            <div class="row">
-                <div class="col-xs-12"> 
-                    <a class="faicon"
-                       data-bind="events: {click: onRefresh }">
-                        <i style="padding-top:4px!important "
-                           class="fa fa-2x fa-refresh"></i> 
-                    </a>
-                </div>
-            </div>
+        <div class="btn-group btn-group-justified"> 
+            <a class="btn btn-danger" data-role="button"
+               data-click="app.navigation.navigateAppDashboardView">
+                <i class="fa fa-arrow-left"></i> Back
+            </a>
+            <a class="btn btn-primary"
+               data-bind="events: {click: onRefresh }">
+                <i class="fa fa-refresh"></i> Refresh
+            </a>
         </div>
     </footer>
+     
     <div id="dvvisionsummary" style="display:none;"
          data-role="touch"
          data-enable-swipe="1"

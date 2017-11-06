@@ -14,6 +14,9 @@
         }, 
         navigateNoAppId: function () {
             return app.mobileApp.navigate('components/missingSettingsView/noappidView.html');
+        }, 
+        navigateAppDashboardView: function () {
+            return app.mobileApp.navigate('components/AppDashboardView/view.html');
         },
         navigateAuthentication: function () {
             return app.mobileApp.navigate('components/authenticationView/view.html');
